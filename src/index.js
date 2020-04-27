@@ -1,37 +1,46 @@
 import todoItem from './todo-items.js'
 import generateDomItem from './todo-item-dom-generator.js'
+import project from "./project.js"
 
+document.getElementById("newProjectButton").addEventListener("click", createNewProject);
 
-document.getElementById("newItemButton").addEventListener("click", createNewItem);
+const lowerContainer = document.getElementById('lowerContainer');
 
+var projectArray = [];
+var projectCount = 0;
 
-var listItems = [];
-var itemIndex = 0;
-
-
-function createNewItem() { //get info from form...create DOM element and Object
-    var form = document.getElementById("itemForm"); //get inputs from the form
-    var title = getTitle(form);
-    var description = getDescription(form);
-    
-    var uniqueID = `index${itemIndex}` //to be used for deleting later... there is a better way... using data attributes and also storing them in the object?
-    var newDOMItem = generateDomItem(uniqueID, title, description);
-    document.getElementById('lowerDisplay').appendChild(newDOMItem);
-
-    var item = todoItem(title, description,);
-    listItems.push(item);
-
-
-    form.reset();
-    ++itemIndex;
+function createNewProject(name) {
+    const projectDisplay = document.createElement('div');
+    projectDisplay.className = "lowerDisplay";
+    projectDisplay.id = `project${projectCount}`;
+    clearLowerContainer();
+    lowerContainer.appendChild(projectDisplay);
+    const newProject = project(name);
+    projectArray.push(newProject);
+    console.log(projectArray);
+    ++projectCount;
+    populateProjectListDisplay();
 }
 
-function getTitle(form){
-    var title = form.elements[0].value;
-    return title;
+function clearLowerContainer() {
+    while (lowerContainer.hasChildNodes()) {
+        lowerContainer.removeChild(lowerContainer.firstChild);
+    }
 }
 
-function getDescription(form){
-    var description = form.elements[1].value;
-    return description;
+const projectsDisplay = document.getElementById('projectSpace');
+
+function populateProjectListDisplay() {
+    var i;
+    for (i=0; i<projectArray.length; ++i){
+        var newDiv = document.createElement("div");
+        newDiv.className = "projectListItem";
+        var divText = document.createElement('div');
+        divText.innerHTML = `${projectArray[i]["name"]}`
+        newDiv.appendChild(divText);
+        projectsDisplay.appendChild(newDiv);
+    }
 }
+
+createNewProject("Hello"); //page starts with a blank project
+populateProjectListDisplay();
