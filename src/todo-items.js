@@ -4,7 +4,7 @@
 
 //associate items with projects
 
-const todoItem = (title, description, dueDate, notes, priority, project) => {
+const todoItem = (title="", description="", dueDate="none", notes="none", priority="none", project="none") => {
     return {title, description, dueDate, notes, priority, project};
 }
 
