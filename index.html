@@ -34,14 +34,19 @@
         font-weight: bold;
     }
 
-    #lowerDisplay {
+    #lowerContainer {
         grid-row-start: 2;
         grid-row-end: 3;
         grid-column-start: 2;
         grid-column-end: 3;
+        display: flex;
+    }
+
+    .lowerDisplay {
         background-color: white;
         border: 1px solid black;
-        margin: 40px 10px;
+        flex-basis: 100%;
+        margin: 40px;
         display: flex;
         flex-wrap: wrap;
         align-content: flex-start;
@@ -91,8 +96,8 @@
     #toDoForm {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
         margin: auto;
         background-color: blue;;
         flex-basis: 50%;
@@ -128,12 +133,61 @@
         100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
 
+    #projectsDisplay {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: grid;
+        grid-template-rows: 6fr 1fr;
+    }
+
+    #newProjectButtonDiv {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        display: flex;
+    }
+
+    #newProjectButton {
+        margin: auto;
+    }
+
+    #projectsListed {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        display: flex;
+    }
+
+    .projectListItem {
+        flex-basis: 100%;
+        height: 8vh;
+        border: 1px solid black;
+    }
+
+    #projectSpace {
+        margin: 40px 10 auto auto;
+        background-color: white;
+        border: 1px solid black;
+        flex-basis: 80%;
+        height: 500px;
+    }
+
 
 </style>
 <body>
     <div id="content">
         <div id="titleContainer">
             <div id="title">To Do List</div>
+        </div>
+
+        <div id="projectsDisplay">
+            <div id="newProjectButtonDiv">
+                <button id="newProjectButton">New Project</button>
+            </div>
+            <div id="projectsListed">
+                <div id="projectSpace"></div>
+            </div>
+            
         </div>
         
         <div id="toDoForm">
@@ -147,9 +201,7 @@
             <button id="newItemButton">Create To Do Item</button>
         </div>
 
-        <div id="lowerDisplay">
-
-        </div>
+        <div id="lowerContainer"></div>
 
     </div>
 
