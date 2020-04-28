@@ -43,4 +43,3 @@ function populateProjectListDisplay() {
 }
 
 createNewProject("Hello"); //page starts with a blank project
-populateProjectListDisplay();

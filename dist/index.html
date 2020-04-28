@@ -7,105 +7,143 @@
 <style>
     body{
         margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     #content {
         height: 100%;
         width: 100%;
-        background-color: #ccc;
+        background-color: #F8F8F8;
         display: grid;
-        grid-template-rows: 1fr 5fr;
-        grid-template-columns: 1fr 4fr 1fr;
+        grid-template-columns: 1fr 3fr;
     }
 
-    #titleContainer {
+    #leftNavBar {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        background-color: #EFEFEF;
+        display: grid;
+        grid-template-rows: 1fr 5fr 1fr;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #appLogo {
         grid-row-start: 1;
         grid-row-end: 2;
-        grid-column-start: 2;
-        grid-column-end: 3;
-        display: flex;
     }
 
-    #title {
-        margin: auto;
+    h1 {
         font-family: Arial, Helvetica, sans-serif;
-        color: white;
-        font-size: 40;
-        font-weight: bold;
+        font-size: 40px;
+        color: #4D4D4D;
     }
 
-    #lowerContainer {
+    #projectsNavBar {
         grid-row-start: 2;
         grid-row-end: 3;
-        grid-column-start: 2;
-        grid-column-end: 3;
-        display: flex;
-    }
-
-    .lowerDisplay {
-        background-color: white;
-        border: 1px solid black;
-        flex-basis: 100%;
-        margin: 40px;
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         align-content: flex-start;
     }
 
-    .toDoItem {
-        flex-basis: 100%;
-        height: 8vh;
-        border: 1px solid black;
-        display: grid;
-        grid-template-columns: 3fr 5fr 1fr 1fr;
-    }
-
-    .titleWrapper {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        border: 1px solid gray;
+    .project {
+        flex-basis: 75%;
+        margin: auto;
+        color: #4D4D4D;
+        border-radius: 5%;
         display: flex;
     }
 
-    .descriptionWrapper {
+    .project:hover {
+        background-color: #E6E6E6;
+        cursor: pointer;
+    }
+
+    .projectTimeDisplay {
+        flex-basis: 15%;
+        text-align: center;
+    }
+
+    .projectName {
+        flex-basis: 85%;
+    }
+
+    h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        color: #4D4D4D;
+    }
+
+    h3 {
+        margin: 5px;
+        font-size: 20;
+    }
+
+    h4 {
+        margin: 5px;
+        font-size: 20;
+        font-weight: lighter;
+    }
+
+    #rightSideContainer {
         grid-column-start: 2;
         grid-column-end: 3;
-        border: 1px solid gray;
         display: flex;
     }
 
-    .checkBoxWrapper {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        border: 1px solid gray;
+    .projectViewer {
+        flex-basis: 90%;
+        height: 600px;
+        /* background-color: white; */
+        margin: auto;
         display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
     }
+
+    .projectViewerTitle{
+        flex-basis: 85%;
+    }
+
+    .projectViewerDescription{
+        flex-basis: 87%;
+        margin: 5px auto 30px auto;
+        font-style: italic;
+    }
+
+    .projectViewerItems{
+        flex-basis: 87%;
+        margin: 15px auto;
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .item {
+        flex-basis: 100%;
+        margin: 5px auto;
+    }
+
+    .item:hover {
+        background-color: #EFEFEF;
+        cursor: pointer;
+    }
+
+    .fullWidth {
+        flex-basis: 100%;
+        display: flex;
+        height: 100px;
+    }
+  
 
     .deleteWrapper {
         grid-column-start: 4;
         grid-column-end: 5;
         border: 1px solid gray;
         display: flex;
-    }
-
-    .textDiv {
-        margin: auto;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    #toDoForm {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        margin: auto;
-        background-color: blue;;
-        flex-basis: 50%;
-        text-align: center;
-    }
-
-    #titleForm {
-        flex-basis: 90%;
     }
 
     .deleteIcon {
@@ -133,79 +171,64 @@
         100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
 
-    #projectsDisplay {
-        grid-row-start: 2;
-        grid-row-end: 3;
-        grid-column-start: 1;
-        grid-column-end: 2;
-        display: grid;
-        grid-template-rows: 6fr 1fr;
-    }
-
-    #newProjectButtonDiv {
-        grid-row-start: 2;
-        grid-row-end: 3;
-        display: flex;
-    }
-
-    #newProjectButton {
-        margin: auto;
-    }
-
-    #projectsListed {
-        grid-row-start: 1;
-        grid-row-end: 2;
-        display: flex;
-    }
-
-    .projectListItem {
-        flex-basis: 100%;
-        height: 8vh;
-        border: 1px solid black;
-    }
-
-    #projectSpace {
-        margin: 40px 10 auto auto;
-        background-color: white;
-        border: 1px solid black;
-        flex-basis: 80%;
-        height: 500px;
-    }
-
 
 </style>
 <body>
+
     <div id="content">
-        <div id="titleContainer">
-            <div id="title">To Do List</div>
-        </div>
+        <div id="leftNavBar">
 
-        <div id="projectsDisplay">
-            <div id="newProjectButtonDiv">
-                <button id="newProjectButton">New Project</button>
+            <div id="appLogo">
+                <h2>Projects</h2>
             </div>
-            <div id="projectsListed">
-                <div id="projectSpace"></div>
+
+            <div id="projectsNavBar">
+                <div class="project">
+                    <div class="projectTimeDisplay"><h3>O</h3></div>
+                    <div class="projectName"><h3>Plan Vacation</h3></div>
+                </div>
+                <div class="project">
+                    <div class="projectTimeDisplay"><h3>O</h3></div>
+                    <div class="projectName"><h3>Garden Work</h3></div>
+                </div>
+                <div class="project">
+                    <div class="projectTimeDisplay"><h3>O</h3></div>
+                    <div class="projectName"><h3>Pay Taxes</h3></div>
+                </div>
+                <div class="project">
+                    <div class="projectTimeDisplay"><h3>O</h3></div>
+                    <div class="projectName"><h3>Grocery Shopping</h3></div>
+                </div>
+               
             </div>
-            
-        </div>
-        
-        <div id="toDoForm">
-            <form action="/action_page.php" id="itemForm">
-                <label for="titleForm">Title</label><br>
-                <input type="text" id="titleForm" name="titleForm" value=""><br>
 
-                <label for="descriptionForm">Description</label><br>
-                <input type="text" id="descriptionForm" name="titleForm" value=""><br><br>
-            </form>
-            <button id="newItemButton">Create To Do Item</button>
         </div>
-
-        <div id="lowerContainer"></div>
+    
+        <div id="rightSideContainer">
+            <div class="projectViewer">
+                <div class="fullWidth">
+                    <div class="projectTimeDisplay"><h1>O</h1></div>
+                    <div class="projectName"><h1>Plan Vacation</h1></div>
+                </div>
+                <div class="projectViewerDescription"><h4>We will depart from
+                    Amsterdam on the 10th of June and return on the 25th of June.
+                </h4></div>
+                <div class="projectViewerItems">
+                    <div class="item"><h4>O Pick a Destination</h4></div>
+                    <div class="item"><h4>O Find a Flight</h4></div>
+                    <div class="item"><h4>O Research Things to Do</h4></div>
+                    <div class="item"><h4>O Book Rental Car</h4></div>
+                    <div class="item"><h4>O Book Hotels</h4></div>
+                    <div class="item"><h4>O Find Restaurants</h4></div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
+
     <script src="main.js"></script>
+
 </body>
 </html>
 
