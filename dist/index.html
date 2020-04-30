@@ -33,10 +33,34 @@
         grid-row-end: 2;
     }
 
+    #newProjectButton {
+        background-color: white;
+        border: 2px solid black;
+    }
+
     h1 {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 40px;
         color: #4D4D4D;
+    }
+
+    h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        color: #4D4D4D;
+    }
+
+    h3 {
+        margin: 5px;
+        font-size: 20;
+        pointer-events: none;
+    }
+
+    h4 {
+        margin: 5px;
+        font-size: 20;
+        font-weight: lighter;
+        pointer-events: none;
     }
 
     #projectsNavBar {
@@ -50,8 +74,8 @@
     }
 
     .project {
-        flex-basis: 75%;
-        margin: auto;
+        flex-basis: 80%;
+        margin: 5px auto;
         color: #4D4D4D;
         border-radius: 5%;
         display: flex;
@@ -63,29 +87,32 @@
     }
 
     .projectTimeDisplay {
-        flex-basis: 15%;
+        flex-basis: 10%;
         text-align: center;
+        pointer-events: none;
+        order: 1;
+        
     }
 
     .projectName {
-        flex-basis: 85%;
+        flex-basis: 80%;
+        pointer-events: none;
+        order: 2;
     }
 
-    h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 30px;
-        color: #4D4D4D;
+    .deleteProjectButton {
+        text-align: center;
+        flex-basis: 10%;
+        background-color: blue;
+        border-radius: 50%;
+        order: 3;
     }
 
-    h3 {
-        margin: 5px;
-        font-size: 20;
-    }
 
-    h4 {
-        margin: 5px;
-        font-size: 20;
-        font-weight: lighter;
+    .deleteProjectButton:hover {
+        background-color: red;
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
     }
 
     #rightSideContainer {
@@ -108,13 +135,13 @@
         flex-basis: 85%;
     }
 
-    .projectViewerDescription{
+    #projectViewerDescription{
         flex-basis: 87%;
         margin: 5px auto 30px auto;
         font-style: italic;
     }
 
-    .projectViewerItems{
+    #projectViewerItems{
         flex-basis: 87%;
         margin: 15px auto;
         display: flex;
@@ -124,12 +151,44 @@
 
     .item {
         flex-basis: 100%;
+        /* display: flex; */
+        display: grid;
+        grid-template-columns: 15fr 1fr 1fr;
+        /* flex-wrap: wrap; */
         margin: 5px auto;
     }
 
     .item:hover {
         background-color: #EFEFEF;
         cursor: pointer;
+    }
+
+    .itemTitle {
+        /* flex-basis: 90%; */
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .moreInfo {
+        grid-column-start: 2;
+        grid-column-end: 3;
+    }
+
+    .moreInfo:hover {
+        color: blue;
+    }
+
+    .deleteItemDiv {
+        /* flex-basis: 9%; */
+        text-align: center;
+        grid-column-start: 3;
+        grid-column-end: 4;
+    }
+
+    .deleteItemDiv:hover {
+        color: red;
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
     }
 
     .fullWidth {
@@ -180,56 +239,32 @@
 
             <div id="appLogo">
                 <h2>Projects</h2>
+                <div id="newProjectButton">New Project</div>
             </div>
 
-            <!-- <div id="projectsNavBar">
-                <div class="project">
-                    <div class="projectTimeDisplay"><h3>O</h3></div>
-                    <div class="projectName"><h3>Plan Vacation</h3></div>
-                </div>
-                <div class="project">
-                    <div class="projectTimeDisplay"><h3>O</h3></div>
-                    <div class="projectName"><h3>Garden Work</h3></div>
-                </div>
-                <div class="project">
-                    <div class="projectTimeDisplay"><h3>O</h3></div>
-                    <div class="projectName"><h3>Pay Taxes</h3></div>
-                </div>
-                <div class="project">
-                    <div class="projectTimeDisplay"><h3>O</h3></div>
-                    <div class="projectName"><h3>Grocery Shopping</h3></div>
-                </div>
-               
-            </div> -->
+            <div id="projectsNavBar">
 
+            </div>
         </div>
     
         <div id="rightSideContainer">
-            <!-- <div class="projectViewer">
+            <div class="projectViewer">
+
                 <div class="fullWidth" id="projectHeader">
-                    <div class="projectTimeDisplay"><h1>O</h1></div>
-                    <div class="projectName"><h1>Plan Vacation</h1></div>
+                    <div id="projectTimeDisplay" class="projectTimeDisplay"></div>
+                    <div id="projectName" class="projectName"></div>
                 </div>
-                <div class="projectViewerDescription"><h4>We will depart from
-                    Amsterdam on the 10th of June and return on the 25th of June.
-                </h4></div>
-                <div class="projectViewerItems">
-                    <div class="item"><h4>O Pick a Destination</h4></div>
-                    <div class="item"><h4>O Find a Flight</h4></div>
-                    <div class="item"><h4>O Research Things to Do</h4></div>
-                    <div class="item"><h4>O Book Rental Car</h4></div>
-                    <div class="item"><h4>O Book Hotels</h4></div>
-                    <div class="item"><h4>O Find Restaurants</h4></div>
-                </div>
-            </div> -->
+                <div id="projectViewerDescription"></div>
+                <div id="projectViewerItems"></div>
+
+            </div>
+
         </div>
 
     </div>
 
-
-    <script src="main.js"></script>
-
 </body>
+<script src="main.js"></script>
 </html>
 
 <!-- 

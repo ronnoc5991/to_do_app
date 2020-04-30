@@ -1,5 +1,4 @@
 import todoItem from './create-todo-object.js'
-import generateDomItem from './todo-item-dom-generator.js'
 
 const project = (name) => {
 
