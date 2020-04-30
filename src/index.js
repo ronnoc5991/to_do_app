@@ -1,45 +1,34 @@
-import todoItem from './todo-items.js'
-import generateDomItem from './todo-item-dom-generator.js'
-import project from "./project.js"
+import project from "./create-project-object.js"
+import manageDOM from "./project-DOM-manager.js"
+import projectsNavBar from "./project-nav-bar.js"
 
-document.getElementById("newProjectButton").addEventListener("click", createNewProject);
-
-const lowerContainer = document.getElementById('lowerContainer');
-
-var projectArray = [];
+var projectsLibrary = []; //projects will be stored here
 var projectCount = 0;
 
-function createNewProject(name) {
-    const projectDisplay = document.createElement('div');
-    projectDisplay.className = "lowerDisplay";
-    projectDisplay.id = `project${projectCount}`;
-    clearLowerContainer();
-    lowerContainer.appendChild(projectDisplay);
-    const newProject = project(name);
-    projectArray.push(newProject);
-    console.log(projectArray);
-    ++projectCount;
-    populateProjectListDisplay();
-}
 
-function clearLowerContainer() {
-    while (lowerContainer.hasChildNodes()) {
-        lowerContainer.removeChild(lowerContainer.firstChild);
-    }
-}
+//create new Project on button click
+//push that project into the projectsLibrary
+//update Displays?
 
-const projectsDisplay = document.getElementById('projectSpace');
 
-function populateProjectListDisplay() {
-    var i;
-    for (i=0; i<projectArray.length; ++i){
-        var newDiv = document.createElement("div");
-        newDiv.className = "projectListItem";
-        var divText = document.createElement('div');
-        divText.innerHTML = `${projectArray[i]["name"]}`
-        newDiv.appendChild(divText);
-        projectsDisplay.appendChild(newDiv);
-    }
-}
+//this is the dispatch
+//Events happen here and dispatch the work to modules
+//need both DOM modules and application modules
 
-createNewProject("Hello"); //page starts with a blank project
+var newProject = project("Vacation to Sicily", "We would like to go to Sicily sometime in the next year");
+console.log(newProject);
+projectsLibrary.push(newProject);
+
+newProject.createNewItem("Find a cheap Flight", "This is the first to do item of this project", "Due when I feel like it");
+console.log(newProject);
+
+newProject.createNewItem("Book some Hotels", "This is the second to do item of this project", "When I feel like it");
+console.log(newProject);
+
+
+const rightSideContainer = document.getElementById("rightSideContainer");
+
+rightSideContainer.appendChild(manageDOM(newProject));
+
+const leftNavBar = document.getElementById("leftNavBar");
+leftNavBar.appendChild(projectsNavBar(projectsLibrary));
