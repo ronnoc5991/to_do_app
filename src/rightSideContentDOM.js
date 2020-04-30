@@ -1,48 +1,18 @@
-const populateRightSideContent = (project="none") => { //passed the project object as argument
-
-    //need to break this up... make the enduring elements part of the HTML and simply fill them  with the project specific information
-
-
-    // const rightSideContainer = document.getElementById("rightSideContainer");
-    // while (rightSideContainer.hasChildNodes()){
-    //     rightSideContainer.removeChild(rightSideContainer.firstChild);
-    // }
-
-    // const projectView = document.createElement('div'); //container
-    // projectView.className = "projectViewer";
-
-
-    // const header = document.createElement('div');
-    //     header.className = "fullWidth";
-    //     header.id = "projectHeader";
+const populateRightSideContent = (project="none") => {
 
     const timeDisplay = document.getElementById("projectTimeDisplay");
-        // const timeDisplay = document.createElement('div');
         timeDisplay.innerHTML = "<h1>O<h1>";
-            // timeDisplay.className = "projectTimeDisplay";
     const theTitle = document.getElementById("projectName");
-        // const theTitle = document.createElement('div');
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
-        // theTitle.className = "projectName";
-    //     header.appendChild(timeDisplay);
-    //     header.appendChild(theTitle);
-    // projectView.appendChild(header);
 
     const descriptionDiv = document.getElementById("projectViewerDescription");
-    // const descriptionDiv = document.createElement('div');
         descriptionDiv.innerHTML = `<h4>${project.description}<h4>`;
-        // descriptionDiv.className = "projectViewerDescription";
-    // projectView.appendChild(descriptionDiv);
 
     const itemDisplay = document.getElementById("projectViewerItems");
 
     while(itemDisplay.hasChildNodes()) {
         itemDisplay.removeChild(itemDisplay.firstChild);
     }
-
-    // const itemDisplay = document.createElement('div');
-        // itemDisplay.className = "projectViewerItems";
-    // projectView.appendChild(itemDisplay);
 
     var arrayOfToDos = project.toDos;
     var i;
@@ -73,9 +43,6 @@ const populateRightSideContent = (project="none") => { //passed the project obje
         itemDisplay.appendChild(itemDiv);
     }
 
-    // return projectView
 }
 
 export default populateRightSideContent
-
-//this should be renamed to update RIGHT SIDE DOM or zoiets

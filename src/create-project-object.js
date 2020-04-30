@@ -1,5 +1,4 @@
 import todoItem from './create-todo-object.js'
-import populateRightSideContent from './rightSideContentDOM.js';
 
 const project = (title, description) => {
 
@@ -12,11 +11,7 @@ const project = (title, description) => {
     }
 
     const destroyItem = (itemIndex) => {
-        console.log("destroy");
-        console.log(itemIndex);
-        console.log(toDos);
         toDos.splice(itemIndex, 1);
-        console.log(toDos);
     }
 
     return {title, description, toDos, createNewItem, destroyItem};
