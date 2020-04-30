@@ -131,6 +131,27 @@
         align-content: flex-start;
     }
 
+    #projectHeader {
+        display: flex;
+    }
+
+    #projectTimeDisplay{
+        flex-basis: 10%;
+        order: 1;
+    }
+
+    #projectName {
+        flex-basis: 80%;
+        order: 2;
+    }
+
+    #newItemButton {
+        flex-basis: 10%;
+        order: 3;
+        text-align: center;
+    }
+
+
     .projectViewerTitle{
         flex-basis: 85%;
     }
@@ -196,25 +217,6 @@
         display: flex;
         height: 100px;
     }
-  
-
-    .deleteWrapper {
-        grid-column-start: 4;
-        grid-column-end: 5;
-        border: 1px solid gray;
-        display: flex;
-    }
-
-    .deleteIcon {
-        background-color: red;
-        width: 20px;
-        height: 25px;
-    }
-
-    .deleteIcon:hover {
-        animation: shake 0.5s;
-        animation-iteration-count: infinite;
-    }
 
     @keyframes shake {
         0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -230,6 +232,10 @@
         100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
 
+    .hoverable:hover {
+        cursor: pointer;
+    }
+
 
 </style>
 <body>
@@ -239,7 +245,7 @@
 
             <div id="appLogo">
                 <h2>Projects</h2>
-                <div id="newProjectButton">New Project</div>
+                <div id="newProjectButton" class="hoverable">New Project</div>
             </div>
 
             <div id="projectsNavBar">
@@ -253,6 +259,7 @@
                 <div class="fullWidth" id="projectHeader">
                     <div id="projectTimeDisplay" class="projectTimeDisplay"></div>
                     <div id="projectName" class="projectName"></div>
+                    <div id="newItemButton" class="hoverable"><h1>+</h1></div>
                 </div>
                 <div id="projectViewerDescription"></div>
                 <div id="projectViewerItems"></div>
