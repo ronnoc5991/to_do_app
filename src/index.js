@@ -39,9 +39,19 @@ function createProject(title, description) { //creates project... populates left
     loadRightSideDisplay();
 }
 
-function deleteProject(index) { //there is an error.. make sure that hte right display doesn't display a project after it is already deleted
-    projectsLibrary.splice(index, 1);
-    populateNavBar(projectsLibrary);
+function deleteProject(index) {
+    var projects = document.querySelectorAll('.project');
+    if (projects[index].dataset.active == "yes") {
+        projectsLibrary.splice(index, 1); //remove it
+        populateNavBar(projectsLibrary); //reset left Display
+        projects = document.querySelectorAll('.project');
+        if (projects.length > 0) {
+            projects[0].dataset.active = "yes";
+        }
+    } else {
+        projectsLibrary.splice(index, 1);
+        populateNavBar(projectsLibrary);
+    }
     loadRightSideDisplay(); 
 }
 
@@ -80,9 +90,8 @@ function loadRightSideDisplay() {
                 populateRightSideContent(projectsLibrary[0]);
             } else if (projects[i].dataset.active == "yes") {
                 populateRightSideContent(projectsLibrary[i]);
-            }
-        }
-    } else {
+            }}
+        } else {
         const timeDisplay = document.getElementById("projectTimeDisplay");
             timeDisplay.innerHTML = "<h1>O<h1>";
         const theTitle = document.getElementById("projectName");

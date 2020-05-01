@@ -10,6 +10,7 @@ const populateNavBar = (projectsLibrary) => {
     for (i = 0; i < projectsLibrary.length; ++i) { //add New Projects
         const projectElement = document.createElement('div');
             projectElement.className = "project";
+            projectElement.dataset.active = "no";
             projectElement.dataset.index = `${i}`;
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
