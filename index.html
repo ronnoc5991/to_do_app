@@ -35,7 +35,12 @@
 
     #newProjectButton {
         background-color: white;
-        border: 2px solid black;
+        border: 5px solid black;
+        /* height: 50px;
+        width: 50px; */
+        margin: auto;
+        border-radius: 50%;
+        text-align: center;
     }
 
     h1 {
@@ -103,7 +108,7 @@
     .deleteProjectButton {
         text-align: center;
         flex-basis: 10%;
-        background-color: blue;
+        background-color: black;
         border-radius: 50%;
         order: 3;
     }
@@ -235,7 +240,54 @@
     .hoverable:hover {
         cursor: pointer;
     }
+/* new---------------------------------------------------------------------------------------- */
+.wrapper {
+    flex-basis: 100%;
+    margin: 5px auto;
+    /* display: grid;
+    grid-template-columns: 8fr 8fr 1fr; */
+}
 
+.form {
+    flex-basis: 100%;
+    /* margin: 5px auto; */
+    display: flex;
+    align-items: center;
+}
+
+#toDoTitle {
+    flex-basis: 35%;
+}
+
+#toDoDescription {
+    flex-basis: 30%;
+}
+
+#toDoDate {
+    flex-basis: 30%;
+}
+
+#submit {
+    flex-basis: 5%;
+}
+
+.wrapper label{
+    display: block;
+    margin: 0.5em 0;
+}
+
+.wrapper label input {
+    font-size: 18px;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.wrapper input[type="submit"]{
+    font-size: 25px;
+    color: black;
+    height: 43px;
+}
+/* new---------------------------------------------------------------------------------------- */
 
 </style>
 <body>
@@ -245,7 +297,7 @@
 
             <div id="appLogo">
                 <h2>Projects</h2>
-                <div id="newProjectButton" class="hoverable">New Project</div>
+                <div id="newProjectButton" class="hoverable"></div>
             </div>
 
             <div id="projectsNavBar">
@@ -262,7 +314,28 @@
                     <div id="newItemButton" class="hoverable"><h1>+</h1></div>
                 </div>
                 <div id="projectViewerDescription"></div>
-                <div id="projectViewerItems"></div>
+                <div id="projectViewerItems">
+                    <!-- new-------------------------------------------------------------->
+
+                    
+                    <div class="wrapper" id="formWrapper">
+                        <form class="form">
+                            <label id="toDoTitle">
+                                <input type="text" name="toDoTitle" placeholder="What?" autocomplete="off" required>
+                            </label>
+                            <label id="toDoDescription">
+                                <input type="text" name="toDoDescription" placeholder="Description" autocomplete="off" required>
+                            </label>
+                            <label id="toDoDate">
+                                <input type="text" name="toDoDate" placeholder="When?" autocomplete="off" required>
+                            </label>
+                            <input type="submit" value="+" name="submit" id="submit">
+                        </form>
+                    </div>
+
+
+                    <!-- new-------------------------------------------------------------->
+                </div>
 
             </div>
 
