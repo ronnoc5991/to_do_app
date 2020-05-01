@@ -1,0 +1,67 @@
+<style>
+
+.wrapper {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.wrapper label{
+    display: block;
+    margin: 0.5em 0;
+}
+
+.wrapper label input {
+    font-size: 18px;
+    padding: 0.5em;
+}
+
+.wrapper input[type="submit"]{
+    font-size: 25px;
+    color: yellow;
+}
+
+</style>
+
+
+<div class="wrapper">
+
+    <form class="form">
+
+        <label id="toDoTitle">
+            <input type="text" name="toDoTitle" placeholder="What?" autocomplete="off" required>
+        </label>
+
+        <label id="toDoDescription">
+            <input type="text" name="toDoDescription" placeholder="Description" autocomplete="off" required>
+        </label>
+
+        <label id="toDoDate">
+            <input type="text" name="toDoDate" placeholder="When?" autocomplete="off" required>
+        </label>
+
+        <input type="submit" value="submit" name="submit">
+
+    </form>
+
+</div>
+
+<script>
+
+    const wrapper = document.querySelector('.wrapper');
+    const form = wrapper.querySelectorAll('.form');
+    const submitInput = form[0].querySelector('input[type="submit"]');
+
+    function getFormData(e) {
+
+        e.preventDefault();
+
+        var formData = new FormData(form[0]);
+
+        alert(formData.get('toDoTitle'));
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+        submitInput.addEventListener('click', getFormData, false);
+    }, false);
+
+</script>

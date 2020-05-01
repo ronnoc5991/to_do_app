@@ -1,5 +1,7 @@
 import todoItem from './create-todo-object.js'
 
+//Factory Function to create New Projects
+
 const project = (title, description) => {
 
 
