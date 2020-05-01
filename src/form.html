@@ -1,8 +1,32 @@
 <style>
 
 .wrapper {
-    width: 400px;
-    margin: 0 auto;
+    flex-basis: 100%;
+    margin: 5px auto;
+    /* display: grid;
+    grid-template-columns: 8fr 8fr 1fr; */
+}
+
+.form {
+    flex-basis: 100%;
+    /* margin: 5px auto; */
+    display: grid;
+    grid-template-columns: 8fr 8fr 1fr;
+}
+
+#toDoTitle {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#toDoDescription {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#toDoDate {
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 .wrapper label{
@@ -24,29 +48,21 @@
 
 
 <div class="wrapper">
-
     <form class="form">
-
         <label id="toDoTitle">
             <input type="text" name="toDoTitle" placeholder="What?" autocomplete="off" required>
         </label>
-
         <label id="toDoDescription">
             <input type="text" name="toDoDescription" placeholder="Description" autocomplete="off" required>
         </label>
-
         <label id="toDoDate">
             <input type="text" name="toDoDate" placeholder="When?" autocomplete="off" required>
         </label>
-
         <input type="submit" value="submit" name="submit">
-
     </form>
-
 </div>
 
 <script>
-
     const wrapper = document.querySelector('.wrapper');
     const form = wrapper.querySelectorAll('.form');
     const submitInput = form[0].querySelector('input[type="submit"]');
@@ -58,6 +74,8 @@
         var formData = new FormData(form[0]);
 
         alert(formData.get('toDoTitle'));
+        alert(formData.get('toDoDescription'));
+        alert(formData.get('toDoDate'));
     }
 
     document.addEventListener('DOMContentLoaded', function(){

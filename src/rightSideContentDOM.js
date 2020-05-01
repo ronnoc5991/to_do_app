@@ -1,5 +1,5 @@
 const populateRightSideContent = (project="none") => {
-
+// ----------------Change Project Information Display-----------------------------------
     const timeDisplay = document.getElementById("projectTimeDisplay");
         timeDisplay.innerHTML = "<h1>O<h1>";
     const theTitle = document.getElementById("projectName");
@@ -7,6 +7,8 @@ const populateRightSideContent = (project="none") => {
 
     const descriptionDiv = document.getElementById("projectViewerDescription");
         descriptionDiv.innerHTML = `<h4>${project.description}<h4>`;
+
+// -------------------------------------------------------------------------------------
 
     const itemDisplay = document.getElementById("projectViewerItems");
 
@@ -22,6 +24,7 @@ const populateRightSideContent = (project="none") => {
         const itemDiv = document.createElement('div');
         itemDiv.className = "item";
         itemDiv.dataset.index = `${i}`;
+        // itemDiv.style.order = `${i + 2}`;
 
 
         const itemTitle = document.createElement('div');

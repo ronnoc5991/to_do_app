@@ -118,11 +118,11 @@ function toggleActiveProject(index) {  //successfully toggles actice Project bas
     }
 
 //--------------------------------------------------------Dumby Information----------------------------------------------------------------------
-createProject("Vacation to Sicily", "We would like to go to Sicily sometime in the next year");
+// createProject("Vacation to Sicily", "We would like to go to Sicily sometime in the next year");
 
-projectsLibrary[0].createNewItem("Find a cheap Flight", "This is the first to do item of this project", "Due when I feel like it");
-loadRightSideDisplay();
+// projectsLibrary[0].createNewItem("Find a cheap Flight", "This is the first to do item of this project", "Due when I feel like it");
+// loadRightSideDisplay();
 
-projectsLibrary[0].createNewItem("Book some Hotels", "This is the second to do item of this project", "When I feel like it");
-loadRightSideDisplay();
+// projectsLibrary[0].createNewItem("Book some Hotels", "This is the second to do item of this project", "When I feel like it");
+// loadRightSideDisplay();
 //-----------------------------------------------------------------------------------------------------------------------------------------------
