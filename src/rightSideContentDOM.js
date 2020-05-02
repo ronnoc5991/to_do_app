@@ -10,7 +10,7 @@ const populateRightSideContent = (project="none") => {
 
 // -------------------------------------------------------------------------------------
 
-    const itemDisplay = document.getElementById("projectViewerItems");
+    const itemDisplay = document.getElementById("injectProjectItemsHere");
 
     while(itemDisplay.hasChildNodes()) {
         itemDisplay.removeChild(itemDisplay.firstChild);

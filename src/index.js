@@ -1,13 +1,14 @@
 import project from "./create-project-object.js"
 import populateRightSideContent from "./rightSideContentDOM.js"
 import populateNavBar from "./leftNavBarDOM.js"
+import createToDoForm from "./toDoForm.js"
 
 
 //--------------Definitions and Event Listeners------------------------------------------------------------------
 const projectsNavBar = document.getElementById("projectsNavBar");
 const projectItems = document.getElementById("projectViewerItems");
 const newProjectButton = document.getElementById("newProjectButton").addEventListener("click", newProject);
-const newItemButton = document.getElementById("newItemButton").addEventListener("click", createToDo);
+const newItemButton = document.getElementById("newItemButton").addEventListener("click", createToDo);  //what should this button do?
 
 projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Projects Display List
     if (event.target.className === "project"){
@@ -55,12 +56,12 @@ function deleteProject(index) {
     loadRightSideDisplay(); 
 }
 
-function createToDo() {
+function createToDo(title, description, date) {
     var projects = document.querySelectorAll('.project');
     var i;
     for (i=0; i < projects.length; ++i) { //which one is active?
         if (projects[i].dataset.active == "yes") {
-            projectsLibrary[i].createNewItem("DUDE", "Awesome", "NOw");
+            projectsLibrary[i].createNewItem(title, description, date);
         }
     }
     loadRightSideDisplay();
@@ -77,8 +78,24 @@ function deleteToDo(index) {  //get active project from left nav bar search and 
     loadRightSideDisplay();
 }
 
+const newToDoButton = document.getElementById("submit").addEventListener("click", pullToDoInfoFromForm);
 
-//still need to make forms for new projects/to do items
+function pullToDoInfoFromForm(e) {
+    const wrapper = document.querySelector('.wrapper');
+    const form = wrapper.querySelectorAll('.form');
+    const submitInput = form[0].querySelector('input[type="submit"]');
+    e.preventDefault();
+    var formData = new FormData(form[0]);
+    var title = formData.get('toDoTitle')
+    var description = formData.get('toDoDescription');
+    var date = formData.get('toDoDate');
+    createToDo(title, description, date);
+
+    form[0].reset();
+}
+
+
+//still need to make forms for new projects
 
 function loadRightSideDisplay() {
     var projects = document.querySelectorAll('.project');
@@ -98,7 +115,7 @@ function loadRightSideDisplay() {
             theTitle.innerHTML = "<h1>Create a New Project<h1>";
         const descriptionDiv = document.getElementById("projectViewerDescription");
             descriptionDiv.innerHTML = "<h4>Create a new Project and start being more productive!<h4>";
-        const itemDisplay = document.getElementById("projectViewerItems");
+        const itemDisplay = document.getElementById("injectProjectItemsHere");
             while(itemDisplay.hasChildNodes()) {
             itemDisplay.removeChild(itemDisplay.firstChild);
         }
@@ -124,5 +141,5 @@ function toggleActiveProject(index) {  //successfully toggles actice Project bas
 // loadRightSideDisplay();
 
 // projectsLibrary[0].createNewItem("Book some Hotels", "This is the second to do item of this project", "When I feel like it");
-// loadRightSideDisplay();
+loadRightSideDisplay();
 //-----------------------------------------------------------------------------------------------------------------------------------------------

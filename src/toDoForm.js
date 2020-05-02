@@ -19,7 +19,9 @@ const createToDoForm = () => {
         var date = formData.get('toDoDate');
         // alert(formData.get('toDoDate'));
 
-        createNewItem(title, description, date);
+        return {title, description, date}
+
+        // createNewItem(title, description, date);
     }
 
     document.addEventListener('DOMContentLoaded', function(){
@@ -27,3 +29,5 @@ const createToDoForm = () => {
     }, false);
 
 }
+
+export default createToDoForm
