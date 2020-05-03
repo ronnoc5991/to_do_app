@@ -46,8 +46,6 @@ const populateRightSideContent = (project="none") => {
         itemDisplay.appendChild(itemDiv);
     }
 
-    //create blank toDo form at the end as an itemDiv
-
 }
 
 export default populateRightSideContent

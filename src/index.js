@@ -9,6 +9,8 @@ const projectsNavBar = document.getElementById("projectsNavBar");
 const projectItems = document.getElementById("projectViewerItems");
 const newProjectButton = document.getElementById("newProjectButton").addEventListener("click", newProject);
 const newItemButton = document.getElementById("newItemButton").addEventListener("click", createToDo);  //what should this button do?
+const newToDoButton = document.getElementById("submit").addEventListener("click", pullToDoInfoFromForm);
+const createProjectButton = document.getElementById("submitProject").addEventListener("click", pullProjectInfoFromForm);
 
 projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Projects Display List
     if (event.target.className === "project"){
@@ -21,6 +23,8 @@ projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Pr
 projectItems.addEventListener("click", event => { //adds EventListeners to each ToDo Item in a project
     if(event.target.className === "deleteItemDiv"){
         deleteToDo(event.target.dataset.index);
+    } else if (event.target.className === "moreInfo") {
+        //open the collapsible of this item to show description
     }
 })
 const projectsLibrary = [];
@@ -78,18 +82,27 @@ function deleteToDo(index) {  //get active project from left nav bar search and 
     loadRightSideDisplay();
 }
 
-const newToDoButton = document.getElementById("submit").addEventListener("click", pullToDoInfoFromForm);
-
 function pullToDoInfoFromForm(e) {
     const wrapper = document.querySelector('.wrapper');
     const form = wrapper.querySelectorAll('.form');
-    const submitInput = form[0].querySelector('input[type="submit"]');
+    // const submitInput = form[0].querySelector('input[type="submit"]');
     e.preventDefault();
     var formData = new FormData(form[0]);
     var title = formData.get('toDoTitle')
     var description = formData.get('toDoDescription');
     var date = formData.get('toDoDate');
     createToDo(title, description, date);
+
+    form[0].reset();
+}
+
+function pullProjectInfoFromForm(e) { ////////////////////----------------button is added... combine this button with the other new project button and include create project call in this function
+    const projectForm = document.querySelector('#projectForm');
+    const form = projectForm.querySelectorAll('.form');
+    e.preventDefault();
+    var formData = new FormData(form[0]);
+    var projectTitle = formData.get('projectTitle');
+    console.log(projectTitle);
 
     form[0].reset();
 }
