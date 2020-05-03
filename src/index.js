@@ -7,8 +7,7 @@ import createToDoForm from "./toDoForm.js"
 //--------------Definitions and Event Listeners------------------------------------------------------------------
 const projectsNavBar = document.getElementById("projectsNavBar");
 const projectItems = document.getElementById("projectViewerItems");
-const newProjectButton = document.getElementById("newProjectButton").addEventListener("click", newProject);
-const newItemButton = document.getElementById("newItemButton").addEventListener("click", createToDo);  //what should this button do?
+// const newItemButton = document.getElementById("newItemButton").addEventListener("click", createToDo);  //what should this button do?
 const newToDoButton = document.getElementById("submit").addEventListener("click", pullToDoInfoFromForm);
 const createProjectButton = document.getElementById("submitProject").addEventListener("click", pullProjectInfoFromForm);
 
@@ -25,39 +24,36 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
         deleteToDo(event.target.dataset.index);
     } else if (event.target.className === "moreInfo") {
         //open the collapsible of this item to show description
+    } else if (event.target.className === "itemTitle") {
+        var thisItem = event.target.parentNode;
+        thisItem.className += " done";
+        event.target.className += " lineThrough";
+    } else if (event.target.className === "itemTitle lineThrough") {
+        var thisItem = event.target.parentNode;
+        thisItem.className += "item";
+        event.target.className = "itemTitle";
     }
 })
 const projectsLibrary = [];
 //---------------------------------------------------------------------------------------------------------------
 
-
-function newProject() { //this will be replaced with form data pull
-    createProject("Number 2", "Test Text");
-}
-
 function createProject(title, description) { //creates project... populates left bar... makes new project active and displays it
     const newProject = project(title, description)
     projectsLibrary.push(newProject);
     populateNavBar(projectsLibrary);
-    var projectList = document.querySelectorAll('.project');
-    projectList[(projectsLibrary.length - 1)].dataset.active = "yes"; //makes newest Project the Active Project
-    loadRightSideDisplay();
+    toggleActiveProject(projectsLibrary.length - 1);
 }
 
 function deleteProject(index) {
     var projects = document.querySelectorAll('.project');
-    if (projects[index].dataset.active == "yes") {
-        projectsLibrary.splice(index, 1); //remove it
-        populateNavBar(projectsLibrary); //reset left Display
-        projects = document.querySelectorAll('.project');
-        if (projects.length > 0) {
-            projects[0].dataset.active = "yes";
-        }
-    } else {
-        projectsLibrary.splice(index, 1);
-        populateNavBar(projectsLibrary);
+    toggleActiveProject(index);
+    projectsLibrary.splice(index, 1); //remove Project from Library
+    populateNavBar(projectsLibrary); //update the Projects List Display
+    projects = document.querySelectorAll('.project');
+    if (projects.length > 0) { //set the first Project to active
+        toggleActiveProject(0);
     }
-    loadRightSideDisplay(); 
+    updateRightSideDisplay(); 
 }
 
 function createToDo(title, description, date) {
@@ -68,7 +64,7 @@ function createToDo(title, description, date) {
             projectsLibrary[i].createNewItem(title, description, date);
         }
     }
-    loadRightSideDisplay();
+    updateRightSideDisplay();
 }
 
 function deleteToDo(index) {  //get active project from left nav bar search and call delete Item function on that indexed project in projectlibrary
@@ -79,7 +75,7 @@ function deleteToDo(index) {  //get active project from left nav bar search and 
             projectsLibrary[i].destroyItem(index);
         }
     }
-    loadRightSideDisplay();
+    updateRightSideDisplay();
 }
 
 function pullToDoInfoFromForm(e) {
@@ -97,26 +93,23 @@ function pullToDoInfoFromForm(e) {
 }
 
 function pullProjectInfoFromForm(e) { ////////////////////----------------button is added... combine this button with the other new project button and include create project call in this function
-    const projectForm = document.querySelector('#projectForm');
+    const projectForm = document.querySelector('#projectFormContainer');
     const form = projectForm.querySelectorAll('.form');
     e.preventDefault();
     var formData = new FormData(form[0]);
     var projectTitle = formData.get('projectTitle');
     console.log(projectTitle);
+    createProject(projectTitle, "Dumby Description Text");
 
     form[0].reset();
 }
 
-
-//still need to make forms for new projects
-
-function loadRightSideDisplay() {
+function updateRightSideDisplay() {
     var projects = document.querySelectorAll('.project');
     var i;
     if (projects.length > 0){
         for (i=0; i < projects.length; ++i) {
             if (projects.length == 1) {
-                projects[0].dataset.active = "yes";
                 populateRightSideContent(projectsLibrary[0]);
             } else if (projects[i].dataset.active == "yes") {
                 populateRightSideContent(projectsLibrary[i]);
@@ -137,22 +130,21 @@ function loadRightSideDisplay() {
     }
 }
 
-function toggleActiveProject(index) {  //successfully toggles actice Project based on click event
+function toggleActiveProject(index) {  //successfully toggles active Project based on click event
     const currentProjects = document.querySelectorAll('.project');
     var i;
     for (i=0; i<currentProjects.length; ++i) {
         currentProjects[i].dataset.active = "no";
+        currentProjects[i].className = "project";
     }
     currentProjects[index].dataset.active = "yes";
-    loadRightSideDisplay();
+    currentProjects[index].className += " active";
+
+    updateRightSideDisplay();
     }
 
-//--------------------------------------------------------Dumby Information----------------------------------------------------------------------
-// createProject("Vacation to Sicily", "We would like to go to Sicily sometime in the next year");
 
-// projectsLibrary[0].createNewItem("Find a cheap Flight", "This is the first to do item of this project", "Due when I feel like it");
-// loadRightSideDisplay();
 
-// projectsLibrary[0].createNewItem("Book some Hotels", "This is the second to do item of this project", "When I feel like it");
-loadRightSideDisplay();
-//-----------------------------------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+updateRightSideDisplay();

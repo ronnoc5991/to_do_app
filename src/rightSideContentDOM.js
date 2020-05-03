@@ -29,7 +29,7 @@ const populateRightSideContent = (project="none") => {
 
         const itemTitle = document.createElement('div');
         itemTitle.className = "itemTitle"
-        itemTitle.innerHTML = `<h4>O ${arrayOfToDos[i].title}<h4>`;
+        itemTitle.innerHTML = `<h4>${arrayOfToDos[i].title}<h4>`;
         itemDiv.appendChild(itemTitle);
 
         const moreInfoDiv = document.createElement('div');
