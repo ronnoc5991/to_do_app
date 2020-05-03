@@ -23,7 +23,7 @@
         grid-column-end: 2;
         background-color: #EFEFEF;
         display: grid;
-        grid-template-rows: 1fr 1fr 5fr 1fr;
+        grid-template-rows: 1fr 1fr 8fr;
         justify-items: center;
         align-items: center;
     }
@@ -58,6 +58,43 @@
         pointer-events: none;
     }
 
+    #projectFormContainer {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+
+    #projectForm {
+        margin: auto;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+    }
+
+    #projectForm input[type="text"]{
+        border: none;
+        border-bottom:2px solid red;
+        background-color: #EFEFEF;
+    }
+
+    #projectForm input[type="text"]:focus{
+        outline: none;
+        border: none;
+        border-bottom:2px solid red;
+        background-color: #EFEFEF;
+    }
+
+    #projectForm input[type="submit"]{
+        border-radius: 50%;
+        border: none;
+        margin: 5px;
+        height: 20px;
+        width: 20px;
+    }
+
     #projectsNavBar {
         grid-row-start: 3;
         grid-row-end: 4;
@@ -66,19 +103,6 @@
         display: flex;
         flex-wrap: wrap;
         align-content: flex-start;
-    }
-
-    #projectFormContainer {
-        grid-row-start: 2;
-        grid-row-end: 3;
-        display: flex;
-        height: 100%;
-        width: 100%;
-
-    }
-
-    #projectForm {
-        margin: auto;
     }
 
     .project {
@@ -132,7 +156,6 @@
     .projectViewer {
         flex-basis: 90%;
         height: 600px;
-        /* background-color: white; */
         margin: auto;
         display: flex;
         flex-wrap: wrap;
@@ -180,10 +203,8 @@
 
     .item {
         flex-basis: 100%;
-        /* display: flex; */
         display: grid;
         grid-template-columns: 15fr 1fr 1fr;
-        /* flex-wrap: wrap; */
         margin: 5px auto;
     }
 
@@ -193,13 +214,11 @@
     }
 
     .itemTitle {
-        /* flex-basis: 90%; */
         grid-column-start: 1;
         grid-column-end: 2;
     }
 
     .done {
-        /* text-decoration: line-through; */
         background-color: #EFEFEF;
     }
 
@@ -260,8 +279,20 @@
 .wrapper {
     flex-basis: 100%;
     margin: 5px auto;
-    /* display: grid;
-    grid-template-columns: 8fr 8fr 1fr; */
+}
+
+.form input[type="text"] {
+    background-color: #F8F8F8;
+    border: none;
+    border-bottom: 2px solid red;
+}
+
+.form input[type ="submit"] {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: none;
+    margin: 5px;
 }
 
 .form {
@@ -281,9 +312,7 @@
     flex-basis: 30%;
 }
 
-#submit {
-    flex-basis: 5%;
-}
+
 
 .wrapper label{
     display: block;
@@ -296,11 +325,11 @@
     width: 100%;
 }
 
-.wrapper input[type="submit"]{
+/* .wrapper input[type="submit"]{
     font-size: 25px;
     color: black;
     height: 43px;
-}
+} */
 /* new---------------------------------------------------------------------------------------- */
 
 </style>
@@ -334,7 +363,6 @@
                 <div class="fullWidth" id="projectHeader">
                     <div id="projectTimeDisplay" class="projectTimeDisplay"></div>
                     <div id="projectName" class="projectName"></div>
-                    <!-- <div id="newItemButton" class="hoverable"><h1>+</h1></div> -->
                 </div>
                 <div id="projectViewerDescription"></div>
                 <div id="projectViewerItems">
@@ -367,15 +395,3 @@
 </body>
 <script src="main.js"></script>
 </html>
-
-<!-- 
-    new item should be a pop up
-
-    use font awesome icons for delete button
-
-    add due date functionality... maybe show how much time is left until it is due
-
-    add project options
-
-    add delete functionality
- -->
