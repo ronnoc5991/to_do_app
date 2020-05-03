@@ -78,6 +78,14 @@
         align-content: flex-start;
     }
 
+    #projectForm {
+        grid-row-start: 3;
+        grid-row-end: 4;
+        height: 100%;
+        width: 100%;
+
+    }
+
     .project {
         flex-basis: 80%;
         margin: 5px auto;
@@ -302,6 +310,17 @@
 
             <div id="projectsNavBar">
 
+            </div>
+
+            <div id="projectForm">
+                <form class="form">
+                    <label id="toDoTitle">
+                        <input type="text" name="projectTitle" placeholder="New Project" autocomplete="off" required>
+                    </label>
+                    <label>
+                        <input type="submit" value="+" name="submitProject" id="submitProject">
+                    </label>
+                </form>
             </div>
         </div>
     
