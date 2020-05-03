@@ -7,7 +7,6 @@ import createToDoForm from "./toDoForm.js"
 //--------------Definitions and Event Listeners------------------------------------------------------------------
 const projectsNavBar = document.getElementById("projectsNavBar");
 const projectItems = document.getElementById("projectViewerItems");
-// const newItemButton = document.getElementById("newItemButton").addEventListener("click", createToDo);  //what should this button do?
 const newToDoButton = document.getElementById("submit").addEventListener("click", pullToDoInfoFromForm);
 const createProjectButton = document.getElementById("submitProject").addEventListener("click", pullProjectInfoFromForm);
 
@@ -20,20 +19,37 @@ projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Pr
 });
 
 projectItems.addEventListener("click", event => { //adds EventListeners to each ToDo Item in a project
+    var parentItem = event.target.parentNode
+    var projects = document.querySelectorAll('.project');
+    var i;
+    
     if(event.target.className === "deleteItemDiv"){
         deleteToDo(event.target.dataset.index);
     } else if (event.target.className === "moreInfo") {
         //open the collapsible of this item to show description
     } else if (event.target.className === "itemTitle") {
-        var thisItem = event.target.parentNode;
-        thisItem.className += " done";
-        event.target.className += " lineThrough";
-    } else if (event.target.className === "itemTitle lineThrough") {
-        var thisItem = event.target.parentNode;
-        thisItem.className += "item";
-        event.target.className = "itemTitle";
+        
+        if (parentItem.className == "item"){
+            parentItem.className += " done";
+            for (i=0; i < projects.length; ++i) { //which one is active?
+                if (projects[i].dataset.active == "yes") {
+                    projectsLibrary[i].toDos[(parentItem.dataset.index)].done = "yes"  //need a toggle Done status function... should this be in the project object?  I think so
+                }
+            }
+        } else if (parentItem.className == "item done") {
+            parentItem.className = "item";
+            for (i=0; i < projects.length; ++i) { //which one is active?
+                if (projects[i].dataset.active == "yes") {
+                    projectsLibrary[i].toDos[(parentItem.dataset.index)].done = "no"
+                }
+            }
+        }
+        
+        // event.target.className += " lineThrough"; //this should be made permanent somehow... this clears on new load of right display
+
     }
 })
+
 const projectsLibrary = [];
 //---------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +77,7 @@ function createToDo(title, description, date) {
     var i;
     for (i=0; i < projects.length; ++i) { //which one is active?
         if (projects[i].dataset.active == "yes") {
-            projectsLibrary[i].createNewItem(title, description, date);
+            projectsLibrary[i].createNewItem(title, description, date, "no");
         }
     }
     updateRightSideDisplay();
@@ -87,7 +103,7 @@ function pullToDoInfoFromForm(e) {
     var title = formData.get('toDoTitle')
     var description = formData.get('toDoDescription');
     var date = formData.get('toDoDate');
-    createToDo(title, description, date);
+    createToDo(title, description, date, "no");
 
     form[0].reset();
 }
@@ -98,9 +114,7 @@ function pullProjectInfoFromForm(e) { ////////////////////----------------button
     e.preventDefault();
     var formData = new FormData(form[0]);
     var projectTitle = formData.get('projectTitle');
-    console.log(projectTitle);
     createProject(projectTitle, "Dumby Description Text");
-
     form[0].reset();
 }
 
@@ -142,9 +156,6 @@ function toggleActiveProject(index) {  //successfully toggles active Project bas
 
     updateRightSideDisplay();
     }
-
-
-
 
 //----------------------------------------------------------------------------------------------
 updateRightSideDisplay();

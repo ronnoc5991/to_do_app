@@ -24,8 +24,10 @@ const populateRightSideContent = (project="none") => {
         const itemDiv = document.createElement('div');
         itemDiv.className = "item";
         itemDiv.dataset.index = `${i}`;
-        // itemDiv.style.order = `${i + 2}`;
 
+        if(arrayOfToDos[i].done == "yes") {
+            itemDiv.className += " done";
+        }
 
         const itemTitle = document.createElement('div');
         itemTitle.className = "itemTitle"
