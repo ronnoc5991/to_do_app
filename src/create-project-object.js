@@ -16,9 +16,17 @@ const project = (title, description) => {
         toDos.splice(itemIndex, 1);
     }
 
-    //create function that can toggle the done status of a todo Item given the index of the todo
+    const toggleDoneStatus = (index) => {
+        if (toDos[index].done == "no") {
+            //change it to yes
+            toDos[index].done = "yes";
+        } else {
+            //change it to NO
+            toDos[index].done = "no";
+        }
+    }
 
-    return {title, description, toDos, createNewItem, destroyItem};
+    return {title, description, toDos, createNewItem, destroyItem, toggleDoneStatus};
 }
 
 export default project

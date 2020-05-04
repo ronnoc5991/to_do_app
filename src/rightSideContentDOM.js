@@ -25,14 +25,15 @@ const populateRightSideContent = (project="none") => {
         itemDiv.className = "item";
         itemDiv.dataset.index = `${i}`;
 
-        if(arrayOfToDos[i].done == "yes") {
-            itemDiv.className += " done";
-        }
-
         const itemTitle = document.createElement('div');
         itemTitle.className = "itemTitle"
         itemTitle.innerHTML = `<h4>${arrayOfToDos[i].title}<h4>`;
         itemDiv.appendChild(itemTitle);
+
+        if(arrayOfToDos[i].done == "yes") {
+            itemDiv.className += " done";
+            itemTitle.className += " lineThrough";
+        }
 
         const moreInfoDiv = document.createElement('div');
         moreInfoDiv.className = "moreInfo";
