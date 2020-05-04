@@ -1,6 +1,7 @@
 import project from "./create-project-object.js"
 import populateRightSideContent from "./rightSideContentDOM.js"
 import populateNavBar from "./leftNavBarDOM.js"
+import { formatDistance, subDays } from 'date-fns'
 
 
 //--------------Definitions and Event Listeners------------------------------------------------------------------
@@ -44,8 +45,8 @@ const projectsLibrary = [];
 
 //---------------------------------------------------------------------------------------------------------------
 
-function createProject(title, description) { //creates project... populates left bar... makes new project active and displays it
-    const newProject = project(title, description)
+function createProject(title, description, date) { //creates project... populates left bar... makes new project active and displays it
+    const newProject = project(title, description, date)
     projectsLibrary.push(newProject);
     populateNavBar(projectsLibrary);
     toggleActiveProject(projectsLibrary.length - 1);
@@ -98,8 +99,9 @@ function pullProjectInfoFromForm(e) {
     e.preventDefault();
     var formData = new FormData(form[0]);
     var projectTitle = formData.get('projectTitle');
-    var projectDescription = formData.get('projectDescription')
-    createProject(projectTitle, projectDescription);
+    var projectDescription = formData.get('projectDescription');
+    var projectDate = formData.get('projectDueDate');
+    createProject(projectTitle, projectDescription, projectDate);
     form[0].reset();
 }
 
@@ -197,4 +199,8 @@ function getLocalProjects() {
 //----------------------------------------------------------------------------------------------
 startUp();
 
-//current problem... there is no event to trigger the delete event in the event listeners for to do items
+//work due dates into the UI... somehow display how soon things are due... using a clock or text...
+//research the date-fns module to see what functions are useful to me
+//build collapsibles for the to do items?  in the collapsible you can see the description/notes
+//should the new project and new to do item forms be hidden until called upon?  could include cool roll out animation
+//include fas icons for trash cans and what not

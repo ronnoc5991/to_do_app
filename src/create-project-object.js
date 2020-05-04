@@ -2,7 +2,7 @@ import todoItem from './create-todo-object.js'
 
 //Factory Function to create New Projects
 
-const project = (title, description) => {
+const project = (title, description, date) => {
 
 
     const toDos = [];
@@ -26,7 +26,7 @@ const project = (title, description) => {
         }
     }
 
-    return {title, description, toDos, createNewItem, destroyItem, toggleDoneStatus};
+    return {title, description, date, toDos, createNewItem, destroyItem, toggleDoneStatus};
 }
 
 export default project
