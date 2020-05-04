@@ -23,10 +23,11 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
     if(event.target.className === "deleteItemDiv"){
         parentItem.classList.add("fall");
         parentItem.addEventListener("transitionend", function(event){
-            if(event.propertyName == 'opacity') {
-                console.log("Hello")
-                deleteToDo(event.target.dataset.index)
-            }
+            console.log(event.propertyName);
+            console.log("1");
+            // if(event.propertyName == 'slideOut') {
+            //     deleteToDo(event.target.dataset.index)
+            // }
     });
     } else if (event.target.className === "moreInfo") {
         //open the collapsible of this item to show description
@@ -35,10 +36,11 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
         projectsLibrary[activeProject].toggleDoneStatus(parentItem.dataset.index);
         parentItem.classList.toggle("done");
         event.target.classList.toggle("lineThrough");
+        saveLocalProjects();
     }
 })
 
-var projectsLibrary = [];
+const projectsLibrary = [];
 
 //---------------------------------------------------------------------------------------------------------------
 
@@ -63,16 +65,15 @@ function deleteProject(index) {
     saveLocalProjects();
 }
 
-function createToDo(title, description, date) {
+function createToDo(title, description, date, done) {
     var activeProject = getActiveProject();
-    projectsLibrary[activeProject].createNewItem(title, description, date, "no");
+    projectsLibrary[activeProject].createNewItem(title, description, date, done);
     updateRightSideDisplay();
     saveLocalProjects();
 }
 
 function deleteToDo(index) {  //get active project from left nav bar search and call delete Item function on that indexed project in projectlibrary
     var activeProject = getActiveProject();
-    console.log(activeProject);
     projectsLibrary[activeProject].destroyItem(index);
     updateRightSideDisplay();
     saveLocalProjects();
@@ -81,7 +82,6 @@ function deleteToDo(index) {  //get active project from left nav bar search and 
 function pullToDoInfoFromForm(e) {
     const wrapper = document.querySelector('.wrapper');
     const form = wrapper.querySelectorAll('.form');
-    // const submitInput = form[0].querySelector('input[type="submit"]');
     e.preventDefault();
     var formData = new FormData(form[0]);
     var title = formData.get('toDoTitle')
@@ -110,7 +110,6 @@ function updateRightSideDisplay() {
 
     if (projects.length == 0) {
         const timeDisplay = document.getElementById("projectTimeDisplay");
-            timeDisplay.innerHTML = "<h1>O<h1>";
         const theTitle = document.getElementById("projectName");
             theTitle.innerHTML = "<h1>Create a New Project<h1>";
         const descriptionDiv = document.getElementById("projectViewerDescription");
@@ -151,10 +150,11 @@ function getActiveProject(){ //returns index of Active Project in Projects Libra
 
 function startUp () {
     getLocalProjects();
+    saveLocalProjects();
     if (projectsLibrary.length > 0) {
         populateNavBar(projectsLibrary);
         toggleActiveProject(0);
-        updateRightSideDisplay();
+
     }
     updateRightSideDisplay();
 }
@@ -162,7 +162,6 @@ function startUp () {
 
 function saveLocalProjects(){
     localStorage.setItem('projectsLibrary', JSON.stringify(projectsLibrary)); //copies projectsLibrary to localStorage
-    console.log(projectsLibrary);
 }
 
 function getLocalProjects() {
@@ -172,17 +171,30 @@ function getLocalProjects() {
     }else if (localStorage.getItem('projectsLibrary').length == 0) {
         console.log("Hello");
     } else {
-        //set library equal to the localStorage
-        projectsLibrary = JSON.parse(localStorage.getItem('projectsLibrary'));
-        console.log(projectsLibrary);
+        //set library equal to the localStorage .. this is sloppy.
+        //instead... use the local storage to create new projects and items within those projects
+        // projectsLibrary = JSON.parse(localStorage.getItem('projectsLibrary'));
+
+        var savedProjects = JSON.parse(localStorage.getItem('projectsLibrary')); //this is an array... loop through each project
+        var numberOfProjects = savedProjects.length;
+        var i;
+
+        for(i=0; i<numberOfProjects; ++i){
+            createProject(savedProjects[i].title, savedProjects[i].description);
+                if (savedProjects[i].toDos != []){
+                    var savedToDoItems = savedProjects[i].toDos
+                    var numberOfToDos = savedToDoItems.length
+                    var y;
+                    for (y=0; y<numberOfToDos; ++y){
+                        projectsLibrary[i].createNewItem(savedToDoItems[y].title, savedToDoItems[y].description, savedToDoItems[y].dueDate, savedToDoItems[y].done);
+                    }
+                }
+        }
     }
 }
 
 
 //----------------------------------------------------------------------------------------------
-// createProject("My ToDo List", "This is a default ToDo List.  Feel free to create a new Project by giving it a title and description");
-// console.log(projectsLibrary);
 startUp();
 
-//current problem:  the localstorage items are not interactive.. they are not objects.. they do not have access to the functions... 
-//all local storage functions are called into question
+//current problem... there is no event to trigger the delete event in the event listeners for to do items

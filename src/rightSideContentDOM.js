@@ -1,7 +1,7 @@
 const populateRightSideContent = (project="none") => {
 // ----------------Change Project Information Display-----------------------------------
     const timeDisplay = document.getElementById("projectTimeDisplay");
-        timeDisplay.innerHTML = "<h1>O<h1>";
+    //this was removed... the timeDisplay should show a clock of some kind... or what percentage of the To Do Items are completed as a pie chart;
     const theTitle = document.getElementById("projectName");
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
 

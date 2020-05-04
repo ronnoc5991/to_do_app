@@ -194,12 +194,16 @@
     }
 
     #projectTimeDisplay{
-        flex-basis: 10%;
         order: 1;
+        border: 2px solid black;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        margin: auto;
     }
 
     #projectName {
-        flex-basis: 80%;
+        flex-basis: 90%;
         order: 2;
     }
 
@@ -215,7 +219,7 @@
     }
 
     #projectViewerDescription{
-        flex-basis: 87%;
+        flex-basis: 81%;
         margin: 5px auto 30px auto;
         font-style: italic;
     }
@@ -242,8 +246,31 @@
     }
 
     .fall {
-        transform: translateY(8rem) rotateZ(20deg);
+        animation: slideOut 1s forwards;
+        /* transform: translateY(8rem) rotateZ(20deg); */
         opacity: 0;
+    }
+
+    @keyframes slideOut {
+        0%{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+
+        30%{
+            opacity: 1;
+            transform: translateX(-50px);
+        }
+
+        80%{
+            opacity: 1;
+            transform: translateX(800px);
+        }
+        
+        100%{
+            opacity: 0;
+            transform: translateX(800px);
+        }
     }
 
     .itemTitle {
@@ -253,7 +280,6 @@
 
     .done {
         background-color: #EFEFEF;
-        opacity: 0.5;
     }
 
     .lineThrough {
@@ -394,7 +420,7 @@
             <div class="projectViewer">
 
                 <div class="fullWidth" id="projectHeader">
-                    <div id="projectTimeDisplay" class="projectTimeDisplay"></div>
+                    <div id="projectTimeDisplay" ></div>
                     <div id="projectName" class="projectName"></div>
                 </div>
                 <div id="projectViewerDescription"></div>
