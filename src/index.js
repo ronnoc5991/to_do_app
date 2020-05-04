@@ -25,9 +25,9 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
         parentItem.addEventListener("transitionend", function(event){
             console.log(event.propertyName);
             console.log("1");
-            // if(event.propertyName == 'slideOut') {
-            //     deleteToDo(event.target.dataset.index)
-            // }
+            if(event.propertyName == 'color') {
+                deleteToDo(event.target.dataset.index)
+            }
     });
     } else if (event.target.className === "moreInfo") {
         //open the collapsible of this item to show description
