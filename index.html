@@ -64,10 +64,36 @@
         display: flex;
         height: 100%;
         width: 100%;
+        flex-wrap: wrap;
     }
 
     #projectForm {
         margin: auto;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #projectTitleForm {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    #projectDescriptionForm {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    #submitProjectButton {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        display: flex;
     }
 
     input[type="text"]:focus {
@@ -93,6 +119,7 @@
         margin: 5px;
         height: 20px;
         width: 20px;
+        cursor: pointer;
     }
 
     #projectsNavBar {
@@ -206,11 +233,17 @@
         display: grid;
         grid-template-columns: 15fr 1fr 1fr;
         margin: 5px auto;
+        transition: all 0.5s ease;
     }
 
     .item:hover {
         background-color: #EFEFEF;
         cursor: pointer;
+    }
+
+    .fall {
+        transform: translateY(8rem) rotateZ(20deg);
+        opacity: 0;
     }
 
     .itemTitle {
@@ -220,6 +253,7 @@
 
     .done {
         background-color: #EFEFEF;
+        opacity: 0.5;
     }
 
     .lineThrough {
@@ -293,6 +327,7 @@
     border-radius: 50%;
     border: none;
     margin: 5px;
+    cursor: pointer;
 }
 
 .form {
@@ -325,11 +360,6 @@
     width: 100%;
 }
 
-/* .wrapper input[type="submit"]{
-    font-size: 25px;
-    color: black;
-    height: 43px;
-} */
 /* new---------------------------------------------------------------------------------------- */
 
 </style>
@@ -343,10 +373,13 @@
             </div>
             <div id="projectFormContainer">
                 <form class="form" id="projectForm">
-                    <label id="toDoTitle">
+                    <label id="projectTitleForm">
                         <input type="text" name="projectTitle" placeholder="New Project" autocomplete="off" required>
                     </label>
-                    <label>
+                    <label id="projectDescriptionForm">
+                        <input type="text" name="projectDescription" placeholder="Description" autocomplete="off" required>
+                    </label>
+                    <label id="submitProjectButton">
                         <input type="submit" value="+" name="submitProject" id="submitProject">
                     </label>
                 </form>
