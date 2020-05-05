@@ -1,6 +1,7 @@
 const populateRightSideContent = (project="none") => {
 // ----------------Change Project Information Display-----------------------------------
     const timeDisplay = document.getElementById("projectTimeDisplay");
+    timeDisplay.innerHTML = '<i class="far fa-clock fa-5x"></i>'
     //this was removed... the timeDisplay should show a clock of some kind... or what percentage of the To Do Items are completed as a pie chart;
     const theTitle = document.getElementById("projectName");
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
@@ -37,13 +38,13 @@ const populateRightSideContent = (project="none") => {
 
         const moreInfoDiv = document.createElement('div');
         moreInfoDiv.className = "moreInfo";
-        moreInfoDiv.innerHTML = "<h4>More<h4>";
+        moreInfoDiv.innerHTML = '<i class="fas fa-info-circle"></i>';
         itemDiv.appendChild(moreInfoDiv);
 
         const deleteItemDiv = document.createElement('div');
         deleteItemDiv.className = "deleteItemDiv";
         deleteItemDiv.dataset.index = `${i}`;
-        deleteItemDiv.innerHTML = "<h4>O<h4>"
+        deleteItemDiv.innerHTML = '<i class="fas fa-trash-alt"></i>';
         itemDiv.appendChild(deleteItemDiv);
 
         itemDisplay.appendChild(itemDiv);

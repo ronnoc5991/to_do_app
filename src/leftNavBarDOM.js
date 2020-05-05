@@ -14,13 +14,14 @@ const populateNavBar = (projectsLibrary) => {
             projectElement.dataset.index = `${i}`;
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
-            timeDisplay.innerHTML = "<h3>O<h3>"
+            timeDisplay.innerHTML = '<i class="far fa-clock"></i>'
         const projectTitle = document.createElement('div');
             projectTitle.className = "projectName";
             projectTitle.innerHTML = `<h3>${projectsLibrary[i].title}<h3>`;
         const deleteProjectButton = document.createElement('div');
             deleteProjectButton.className = "deleteProjectButton";
             deleteProjectButton.dataset.index = `${i}`;
+            deleteProjectButton.innerHTML = '<i class="fas fa-ban"></i>'
         projectElement.appendChild(deleteProjectButton);
         projectElement.appendChild(timeDisplay);
         projectElement.appendChild(projectTitle);

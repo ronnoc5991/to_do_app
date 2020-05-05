@@ -2,6 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
     <title>To Do</title>
 </head>
 <style>
@@ -151,8 +154,6 @@
         border-radius: 50%;
         border: none;
         margin: 5px;
-        height: 20px;
-        width: 20px;
         cursor: pointer;
         outline: none;
     }
@@ -185,6 +186,7 @@
         text-align: center;
         pointer-events: none;
         order: 1;
+        margin-top: 8px;
         
     }
 
@@ -197,16 +199,21 @@
     .deleteProjectButton {
         text-align: center;
         flex-basis: 10%;
-        background-color: black;
-        border-radius: 50%;
+        /* border-radius: 50%; */
+        color: black;
+        margin-top: 8px;
         order: 3;
     }
 
 
     .deleteProjectButton:hover {
-        background-color: red;
         animation: shake 0.5s;
         animation-iteration-count: infinite;
+        color: red;
+    }
+
+    i {
+        pointer-events: none;
     }
 
     #rightSideContainer {
@@ -231,15 +238,13 @@
 
     #projectTimeDisplay{
         order: 1;
-        border: 2px solid black;
-        border-radius: 50%;
-        height: 40px;
-        width: 40px;
+        flex-basis: 10%;
+        /* height: 40px; */
         margin: auto;
     }
 
     #projectName {
-        flex-basis: 90%;
+        flex-basis: 85%;
         order: 2;
     }
 
@@ -249,13 +254,17 @@
         text-align: center;
     }
 
+    #injectProjectItemsHere {
+        width: 100%;
+    }
+
 
     .projectViewerTitle{
         flex-basis: 85%;
     }
 
     #projectViewerDescription{
-        flex-basis: 81%;
+        flex-basis: 70%;
         margin: 5px auto 30px auto;
         font-style: italic;
     }
@@ -329,6 +338,7 @@
     .moreInfo {
         grid-column-start: 2;
         grid-column-end: 3;
+        margin-top: 8px;
     }
 
     .moreInfo:hover {
@@ -340,6 +350,7 @@
         text-align: center;
         grid-column-start: 3;
         grid-column-end: 4;
+        margin-top: 8px;
     }
 
     .deleteItemDiv:hover {
@@ -402,6 +413,10 @@
     border: none;
     border-bottom: 2px solid red;
     color: gray;
+}
+
+.form input[type="date"]:focus {
+    outline: none;
 }
 
 #toDoTitle {

@@ -199,8 +199,8 @@ function getLocalProjects() {
 //----------------------------------------------------------------------------------------------
 startUp();
 
-//work due dates into the UI... somehow display how soon things are due... using a clock or text...
 //research the date-fns module to see what functions are useful to me
 //build collapsibles for the to do items?  in the collapsible you can see the description/notes
 //should the new project and new to do item forms be hidden until called upon?  could include cool roll out animation
-//include fas icons for trash cans and what not
+//work due dates into the UI... somehow display how soon things are due
+//font awesome clock icons should change color based on how close the due date of the project is
