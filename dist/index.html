@@ -282,10 +282,27 @@
 
     .item {
         flex-basis: 100%;
-        display: grid;
-        grid-template-columns: 15fr 1fr 1fr;
+        display: flex;
         margin: 5px auto;
         transition: all 0.5s ease;
+        flex-wrap: wrap;
+    }
+
+    .collapsible {
+        overflow: hidden;
+        flex-basis: 100%;
+        padding: 0 25px;
+        display: none;
+        font-style: italic;
+        order: 4;
+        /* max-height: 0;
+        transition: max-height 2s ease-out; */
+
+    }
+
+    .extended {
+        display: block;
+        /* max-height: 200px; */
     }
 
     .item:hover {
@@ -322,8 +339,12 @@
     }
 
     .itemTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
+        flex-basis: 90%;
+        order: 1;
+    }
+
+    .itemTitleNoInfo {
+        flex-basis: 95%;
     }
 
     .done {
@@ -339,9 +360,9 @@
     }
 
     .moreInfo {
-        grid-column-start: 2;
-        grid-column-end: 3;
         margin-top: 8px;
+        flex-basis: 5%;
+        order: 2;
     }
 
     .moreInfo:hover {
@@ -349,11 +370,10 @@
     }
 
     .deleteItemDiv {
-        /* flex-basis: 9%; */
         text-align: center;
-        grid-column-start: 3;
-        grid-column-end: 4;
         margin-top: 8px;
+        flex-basis: 5%;
+        order: 3;
     }
 
     .deleteItemDiv:hover {
@@ -389,6 +409,11 @@
 .wrapper {
     flex-basis: 100%;
     margin: 5px auto;
+    overflow: hidden;
+}
+
+#itemForm {
+    /* transform: translateX(-95%); */
 }
 
 .form input[type="text"] {
@@ -491,7 +516,7 @@
                 <div id="projectViewerDescription"></div>
                 <div id="projectViewerItems">
                     <div class="wrapper" id="formWrapper">
-                        <form class="form">
+                        <form class="form" id="itemForm">
                             <label id="toDoTitle">
                                     <input type="text" name="toDoTitle" placeholder="What?" autocomplete="off" required>
                             </label>

@@ -31,7 +31,14 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
             }
     });
     } else if (event.target.className === "moreInfo") {
-        //open the collapsible of this item to show description
+        var currentCollapsible = event.target.dataset.index;
+        var collapsibles = document.querySelectorAll('.collapsible');
+        var i;
+        for (i=0; i< collapsibles.length; ++i) {
+            if (collapsibles[i].dataset.index == currentCollapsible){
+                collapsibles[i].classList.toggle('extended');
+            }
+        }
     } else if (event.target.classList[0] === "itemTitle") { //toggleDoneStatus of Item
         var activeProject = getActiveProject();
         projectsLibrary[activeProject].toggleDoneStatus(parentItem.dataset.index);
@@ -200,8 +207,6 @@ function getLocalProjects() {
 startUp();
 
 //research the date-fns module to see what functions are useful to me
-
-//build collapsibles for the to do items?  in the collapsible you can see the description/notes
 
 //should the new project and new to do item forms be hidden until called upon?  could include cool roll out animation
 
