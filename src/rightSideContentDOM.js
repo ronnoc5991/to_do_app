@@ -10,7 +10,8 @@ const populateRightSideContent = (project="none") => {
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
     const descriptionDiv = document.getElementById("projectViewerDescription");
 
-    descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br><h4>${project.description}<h4>`;
+    if (project.date != "") {
+        descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br><h4>${project.description}<h4>`;
     var difference = differenceInDays(new Date(project.date), new Date());
         if (difference < 3) {
             timeDisplay.style.color = "#FF0000";
@@ -21,6 +22,21 @@ const populateRightSideContent = (project="none") => {
         } else {
             timeDisplay.style.color = '#0CC400'
         }
+    } else {
+        descriptionDiv.innerHTML = `<h4>${project.description}<h4>`;
+    }
+
+    // descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br><h4>${project.description}<h4>`;
+    // var difference = differenceInDays(new Date(project.date), new Date());
+    //     if (difference < 3) {
+    //         timeDisplay.style.color = "#FF0000";
+    //     } else if (difference < 7) {
+    //        timeDisplay.style.color = "#FFA200";
+    //     } else if (difference < 30) {
+    //         timeDisplay.style.color = '#FFF000';
+    //     } else {
+    //         timeDisplay.style.color = '#0CC400'
+    //     }
 
 // -------------------------------------------------------------------------------------
 
@@ -58,9 +74,12 @@ const populateRightSideContent = (project="none") => {
         const collapsible = document.createElement('div');
         collapsible.className = "collapsible";
 
-            
-        var difference = formatDistance(new Date(), new Date(arrayOfToDos[i].dueDate));
-        collapsible.innerHTML = `<h4>Due in ${difference}</h4><br><h4>${arrayOfToDos[i].description}<h4>`;
+        if (arrayOfToDos[i].dueDate != "") {
+            var difference = formatDistance(new Date(), new Date(arrayOfToDos[i].dueDate));
+            collapsible.innerHTML = `<h4>Due in ${difference}</h4><br><h4>${arrayOfToDos[i].description}<h4>`;
+        } else {
+            collapsible.innerHTML = `<h4>${arrayOfToDos[i].description}<h4>`;
+        }
 
         collapsible.dataset.index = `${i}`;
         itemDiv.appendChild(collapsible);

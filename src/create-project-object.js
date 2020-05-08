@@ -7,7 +7,7 @@ const project = (title, description, date) => {
 
     const toDos = [];
 
-    const createNewItem = (title, description, dueDate, done) => {
+    const createNewItem = (title, description, dueDate="", done) => {
         var newToDo = todoItem(title, description, dueDate, done);
         toDos.push(newToDo);
     }
