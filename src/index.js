@@ -189,7 +189,7 @@ function getLocalProjects() {
         var i;
 
         for(i=0; i<numberOfProjects; ++i){
-            createProject(savedProjects[i].title, savedProjects[i].description);
+            createProject(savedProjects[i].title, savedProjects[i].description, savedProjects[i].date);
                 if (savedProjects[i].toDos != []){
                     var savedToDoItems = savedProjects[i].toDos
                     var numberOfToDos = savedToDoItems.length
@@ -206,9 +206,4 @@ function getLocalProjects() {
 //----------------------------------------------------------------------------------------------
 startUp();
 
-//research the date-fns module to see what functions are useful to me
-
 //should the new project and new to do item forms be hidden until called upon?  could include cool roll out animation
-
-//work due dates into the UI... somehow display how soon things are due
-//font awesome clock icons should change color based on how close the due date of the project is

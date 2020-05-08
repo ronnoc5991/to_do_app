@@ -1,3 +1,5 @@
+import {differenceInDays } from 'date-fns'
+
 const populateNavBar = (projectsLibrary) => {
 
     const projectsNavBar = document.getElementById("projectsNavBar"); //remove old Projects
@@ -15,6 +17,22 @@ const populateNavBar = (projectsLibrary) => {
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
             timeDisplay.innerHTML = '<i class="far fa-clock"></i>'
+
+            if (projectsLibrary[i].date != undefined) {
+                var difference = differenceInDays(new Date(projectsLibrary[i].date), new Date());
+                if (difference < 3) {
+                    timeDisplay.style.color = "#FF0000";
+                } else if (difference < 7) {
+                   timeDisplay.style.color = "#FFA200";
+                } else if (difference < 30) {
+                    timeDisplay.style.color = '#FFF000';
+                } else {
+                    timeDisplay.style.color = '#0CC400'
+                }
+            } else {
+                timeDisplay.style.color = "black";
+            }
+
         const projectTitle = document.createElement('div');
             projectTitle.className = "projectName";
             projectTitle.innerHTML = `<h3>${projectsLibrary[i].title}<h3>`;
