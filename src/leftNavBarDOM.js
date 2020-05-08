@@ -16,21 +16,22 @@ const populateNavBar = (projectsLibrary) => {
             projectElement.dataset.index = `${i}`;
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
-            timeDisplay.innerHTML = '<i class="far fa-clock"></i>'
 
-            if (projectsLibrary[i].date != undefined || projectsLibrary[i].date != "") {
+            if (projectsLibrary[i].date != undefined && projectsLibrary[i].date != "") {
                 var difference = differenceInDays(new Date(projectsLibrary[i].date), new Date());
-                if (difference < 3) {
-                    timeDisplay.style.color = "#FF0000";
+                if (difference < 1) {
+                    timeDisplay.style.color = 'var(--hourglass-red)';
+                    timeDisplay.innerHTML = '<i class="fas fa-hourglass-end"></i>'
                 } else if (difference < 7) {
-                   timeDisplay.style.color = "#FFA200";
-                } else if (difference < 30) {
-                    timeDisplay.style.color = '#FFF000';
-                } else {
-                    timeDisplay.style.color = '#0CC400'
+                   timeDisplay.style.color = 'var(--hourglass-orange)';
+                   timeDisplay.innerHTML = '<i class="fas fa-hourglass-half"></i>'
+                }else {
+                    timeDisplay.style.color = 'var(--hourglass-green)';
+                    timeDisplay.innerHTML = '<i class="fas fa-hourglass-start"></i>'
                 }
             } else {
-                timeDisplay.style.color = '#0CC400'
+                timeDisplay.style.color = 'blue'
+                timeDisplay.innerHTML = '<i class="far fa-hourglass"></i>'
             }
 
         const projectTitle = document.createElement('div');

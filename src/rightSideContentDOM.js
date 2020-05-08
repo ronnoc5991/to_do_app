@@ -3,26 +3,34 @@ import { formatDistance, differenceInDays } from 'date-fns'
 const populateRightSideContent = (project="none") => {
 // ----------------Change Project Information Display-----------------------------------
     const timeDisplay = document.getElementById("projectTimeDisplay");
-    timeDisplay.innerHTML = '<i class="far fa-clock fa-3x"></i>'
-    timeDisplay.style.color = '#0CC400';
 
     const theTitle = document.getElementById("projectName");
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
     const descriptionDiv = document.getElementById("projectViewerDescription");
-    if (project.date != "") {
-        descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br><h4>${project.description}<h4>`;
-    var difference = differenceInDays(new Date(project.date), new Date());
-        if (difference < 3) {
-            timeDisplay.style.color = "#FF0000";
-        } else if (difference < 7) {
-           timeDisplay.style.color = "#FFA200";
-        } else if (difference < 30) {
-            timeDisplay.style.color = '#FFF000';
-        } else {
-            timeDisplay.style.color = '#0CC400'
-        }
+    descriptionDiv.innerHTML = "";
+
+    if (project.date ==="") { //if no date
+        timeDisplay.innerHTML = '<i class="far fa-hourglass fa-3x"></i>'
+        timeDisplay.style.color = 'var(--hourglass-blue)';
     } else {
-        descriptionDiv.innerHTML = `<h4>${project.description}<h4>`;
+        descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br>`;
+        var daysUntilDue = differenceInDays(new Date(project.date), new Date());
+        if (daysUntilDue < 1) {
+            timeDisplay.innerHTML = '<i class="fas fa-hourglass-end fa-3x"></i>';
+            timeDisplay.style.color = 'var(--hourglass-red)';
+        } else if (daysUntilDue < 7) {
+            timeDisplay.innerHTML = '<i class="fas fa-hourglass-half fa-3x"></i>';
+            timeDisplay.style.color = 'var(--hourglass-orange)';
+        } else {
+            timeDisplay.innerHTML = '<i class="fas fa-hourglass-start fa-3x"></i>';
+            timeDisplay.style.color = 'var(--hourglass-green)'
+        }
+    }
+
+    if (project.description === ""){ //if no description
+        //no description
+    } else {
+        descriptionDiv.innerHTML += `<h4>${project.description}<h4>`;
     }
 
 // -------------------------------------------------------------------------------------
