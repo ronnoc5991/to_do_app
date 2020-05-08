@@ -18,10 +18,8 @@ const project = (title, description, date) => {
 
     const toggleDoneStatus = (index) => {
         if (toDos[index].done == "no") {
-            //change it to yes
             toDos[index].done = "yes";
         } else {
-            //change it to NO
             toDos[index].done = "no";
         }
     }

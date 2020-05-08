@@ -1,14 +1,18 @@
 import project from "./create-project-object.js"
 import populateRightSideContent from "./rightSideContentDOM.js"
 import populateNavBar from "./leftNavBarDOM.js"
-import { formatDistance, subDays } from 'date-fns'
+import { formatDistance, endOfDay } from 'date-fns'
 
 
 //--------------Definitions and Event Listeners------------------------------------------------------------------
 const projectsNavBar = document.getElementById("projectsNavBar");
 const projectItems = document.getElementById("projectViewerItems");
-const newToDoButton = document.getElementById("submit").addEventListener("click", pullToDoInfoFromForm);
-const createProjectButton = document.getElementById("submitProject").addEventListener("click", pullProjectInfoFromForm);
+
+const projectForm = document.getElementById('projectForm')
+projectForm.onsubmit = function(e) {pullProjectInfoFromForm(e)};
+
+const toDoForm = document.getElementById('itemForm');
+toDoForm.onsubmit = function(e) {pullToDoInfoFromForm(e)};
 
 projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Projects Display List
     if (event.target.className === "project"){
@@ -96,7 +100,6 @@ function pullToDoInfoFromForm(e) {
     var description = formData.get('toDoDescription');
     var date = formData.get('toDoDate');
     createToDo(title, description, date, "no");
-
     form[0].reset();
 }
 
@@ -108,6 +111,7 @@ function pullProjectInfoFromForm(e) {
     var projectTitle = formData.get('projectTitle');
     var projectDescription = formData.get('projectDescription');
     var projectDate = formData.get('projectDueDate');
+    console.log(projectDate);
     createProject(projectTitle, projectDescription, projectDate);
     form[0].reset();
 }
@@ -175,8 +179,7 @@ function saveLocalProjects(){
 
 function getLocalProjects() {
     if(localStorage.getItem('projectsLibrary') === null){
-        createProject("My ToDo List", "This is a default ToDo List.  Feel free to create a new Project by giving it a title and description");
-        //do nothing
+        createProject("Today", "This is a default ToDo List for your day.  Feel free to create a new Project by giving it a title, description and Due Date.", (endOfDay(new Date())));
     }else if (localStorage.getItem('projectsLibrary').length == 0) {
         console.log("Hello");
     } else {

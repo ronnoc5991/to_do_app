@@ -18,7 +18,7 @@ const populateNavBar = (projectsLibrary) => {
             timeDisplay.className = "projectTimeDisplay";
             timeDisplay.innerHTML = '<i class="far fa-clock"></i>'
 
-            if (projectsLibrary[i].date != undefined) {
+            if (projectsLibrary[i].date != undefined || projectsLibrary[i].date != "") {
                 var difference = differenceInDays(new Date(projectsLibrary[i].date), new Date());
                 if (difference < 3) {
                     timeDisplay.style.color = "#FF0000";
@@ -30,7 +30,7 @@ const populateNavBar = (projectsLibrary) => {
                     timeDisplay.style.color = '#0CC400'
                 }
             } else {
-                timeDisplay.style.color = "black";
+                timeDisplay.style.color = '#0CC400'
             }
 
         const projectTitle = document.createElement('div');
@@ -40,6 +40,7 @@ const populateNavBar = (projectsLibrary) => {
             deleteProjectButton.className = "deleteProjectButton";
             deleteProjectButton.dataset.index = `${i}`;
             deleteProjectButton.innerHTML = '<i class="fas fa-ban"></i>'
+            
         projectElement.appendChild(deleteProjectButton);
         projectElement.appendChild(timeDisplay);
         projectElement.appendChild(projectTitle);
