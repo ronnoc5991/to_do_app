@@ -9,7 +9,6 @@ const populateRightSideContent = (project="none") => {
     const theTitle = document.getElementById("projectName");
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
     const descriptionDiv = document.getElementById("projectViewerDescription");
-console.log(project.date);
     if (project.date != "") {
         descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br><h4>${project.description}<h4>`;
     var difference = differenceInDays(new Date(project.date), new Date());

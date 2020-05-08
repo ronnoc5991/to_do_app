@@ -28,8 +28,6 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
     if(event.target.className === "deleteItemDiv"){
         parentItem.classList.add("fall");
         parentItem.addEventListener("transitionend", function(event){
-            console.log(event.propertyName);
-            console.log("1");
             if(event.propertyName == 'color') {
                 deleteToDo(event.target.dataset.index)
             }
