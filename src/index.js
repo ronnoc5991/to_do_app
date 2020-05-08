@@ -110,13 +110,11 @@ function pullProjectInfoFromForm(e) {
     var formData = new FormData(form[0]);
     var projectTitle = formData.get('projectTitle');
     var projectDescription = formData.get('projectDescription');
-    if (formData.get('projectDueDate') != undefined) {
+    if (formData.get('projectDueDate') != "") {
         var projectDate = formData.get('projectDueDate');
     } else {
         var projectDate = "";
     }
-    // var projectDate = formData.get('projectDueDate');
-    console.log(projectDate);
     createProject(projectTitle, projectDescription, projectDate);
     form[0].reset();
 }
