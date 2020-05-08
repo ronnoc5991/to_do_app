@@ -2,12 +2,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
     <title>To Do</title>
 </head>
 <style>
+    :root {
+        /* colors for hour glass icons */
+        --hourglass-green: #0CC400;
+        --hourglass-orange: #FFA200;
+        --hourglass-red: #FF0000;
+        --hourglass-blue: blue;
+        /* --------------------------- */
+    }
+
     body{
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
@@ -271,6 +279,7 @@
     #projectViewerDescription{
         flex-basis: 70%;
         margin: 5px auto 30px auto;
+        height: 15%;
         font-style: italic;
     }
 
@@ -362,7 +371,7 @@
     }
 
     .moreInfo {
-        margin-top: 8px;
+        margin: auto;
         flex-basis: 5%;
         order: 2;
     }
@@ -373,7 +382,7 @@
 
     .deleteItemDiv {
         text-align: center;
-        margin-top: 8px;
+        margin: auto;
         flex-basis: 5%;
         order: 3;
     }
@@ -387,7 +396,7 @@
     .fullWidth {
         flex-basis: 100%;
         display: flex;
-        height: 70px;
+        /* height: 70px; */
     }
 
     @keyframes shake {
@@ -492,7 +501,7 @@
                         <input type="text" name="projectTitle" placeholder="Project Name" autocomplete="off" required />
                     </label>
                     <label id="projectDescriptionForm">
-                        <input type="text" name="projectDescription" placeholder="Project Details" autocomplete="off" required />
+                        <input type="text" name="projectDescription" placeholder="Project Details" autocomplete="off" />
                     </label>
                     <label id="projectDueDateForm">
                         <input type="date" name="projectDueDate" placeholder="When is it due?" autocomplete="off" />
