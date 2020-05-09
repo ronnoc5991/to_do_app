@@ -42,7 +42,7 @@
     }
 
     i {
-        pointer-events: none;
+        /* pointer-events: none; */
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -112,7 +112,7 @@
 
 /* ------------------------------------------- Forms ------------------------------------------- */
 
-    input[type="text"] {
+    /* input[type="text"] {
         background-color: #F8F8F8;
         border: none;
         border-bottom: 2px solid red;
@@ -157,7 +157,7 @@
         font-size: 12px;
         padding: 0.5em;
         width: 100%;
-    }
+    } */
 
 /* --------------------------------------------------------------------------------------------- */
 
@@ -238,17 +238,16 @@
         order: 1;
         flex-basis: 5%;
         margin: auto;
+        /* animation: rotateHourglass 1s forwards; */
+    }
+
+    #projectTimeDisplay:hover {
+        /* animation: rotateHourglass 3s forwards; */
     }
 
     #projectName {
         flex-basis: 85%;
         order: 2;
-    }
-
-    #newItemButton {
-        flex-basis: 10%;
-        order: 3;
-        text-align: center;
     }
 
     #injectProjectItemsHere {
@@ -379,6 +378,20 @@
         100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
 
+    @keyframes rotateHourglass {
+        0% { transform: rotate(0deg); }
+        10% { transform: rotate(36deg); }
+        20% { transform: rotate(72deg); }
+        30% { transform: rotate(108deg); }
+        40% { transform: rotate(144deg); }
+        50% { transform: rotate(180deg); }
+        60% { transform: rotate(216deg); }
+        70% { transform: rotate(252deg); }
+        80% { transform: rotate(288deg); }
+        90% { transform: rotate(324deg); }
+        100% { transform: rotate(360deg); }
+    }
+
     @keyframes slideOut {
         0%{
             opacity: 1;
@@ -403,6 +416,9 @@
 
     /* ------------------------------------------------------------------------------------------------------------------ */
 
+input {
+    all: unset;
+}
 
 </style>
 <body>
