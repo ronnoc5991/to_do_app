@@ -42,7 +42,7 @@
     }
 
     i {
-        /* pointer-events: none; */
+        pointer-events: none;
     }
 
     /* ------------------------------------------------------------------------------------------ */
@@ -232,13 +232,14 @@
 
     #projectHeader {
         display: flex;
+        flex-basis: 100%;
     }
 
     #projectTimeDisplay{
         order: 1;
         flex-basis: 5%;
         margin: auto;
-        /* animation: rotateHourglass 1s forwards; */
+        animation: rotateHourglass cubic-bezier(0, 0, 0.38, 1.35) forwards;
     }
 
     #projectTimeDisplay:hover {
@@ -279,19 +280,18 @@
 
     .item {
         flex-basis: 100%;
-        display: flex;
         margin: 5px auto;
         transition: all 0.5s ease;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 10fr 4fr 1fr 1fr;
     }
 
     .collapsible {
         overflow: hidden;
-        flex-basis: 100%;
         padding: 0 25px;
         display: none;
         font-style: italic;
-        order: 4;
+        order: 2;
     }
 
     .extended {
@@ -310,12 +310,8 @@
     }
 
     .itemTitle {
-        flex-basis: 90%;
-        order: 1;
-    }
-
-    .itemTitleNoInfo {
-        flex-basis: 95%;
+        grid-column-start: 1;
+        grid-column-end: 2;
     }
 
     .done {
@@ -330,10 +326,17 @@
         background-color: #E6E6E6;
     }
 
+    .itemTimeLeft {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        font-style: italic;
+
+    }
+
     .moreInfo {
         margin: auto;
-        flex-basis: 5%;
-        order: 2;
+        grid-column-start: 3;
+        grid-column-end: 4;
     }
 
     .moreInfo:hover {
@@ -343,19 +346,14 @@
     .deleteItemDiv {
         text-align: center;
         margin: auto;
-        flex-basis: 5%;
-        order: 3;
+        grid-column-start: 4;
+        grid-column-end: 5;
     }
 
     .deleteItemDiv:hover {
         color: red;
         animation: shake 0.5s;
         animation-iteration-count: infinite;
-    }
-
-    .fullWidth {
-        flex-basis: 100%;
-        display: flex;
     }
 
     .hoverable:hover {
@@ -447,7 +445,7 @@ input {
                         <input type="text" name="toDoTitle" placeholder="What?" autocomplete="off" required>
                 </label>
                 <label id="toDoDescription">
-                        <input type="text" name="toDoDescription" placeholder="Description" autocomplete="off" required>
+                        <input type="text" name="toDoDescription" placeholder="Description" autocomplete="off">
                 </label>
                 <label id="toDoDate">
                         <input type="date" name="toDoDate" placeholder="When?" autocomplete="off">
@@ -477,7 +475,7 @@ input {
         <div id="rightSideContainer">
             <div class="projectViewer">
 
-                <div class="fullWidth" id="projectHeader">
+                <div id="projectHeader">
                     <div id="projectTimeDisplay" ></div>
                     <div id="projectName" class="projectName"></div>
                 </div>

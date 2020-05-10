@@ -46,8 +46,9 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
         projectsLibrary[activeProject].toggleDoneStatus(parentItem.dataset.index);
         parentItem.classList.toggle("done");
         event.target.classList.toggle("lineThrough");
+        //also toggle the llinthrough property for the next sibling?
         saveLocalProjects();
-    }
+    } // maybe create a case for if the time left div is clicked that targets the previous sibling element for line through property
 })
 
 const projectsLibrary = [];
@@ -95,7 +96,12 @@ function pullToDoInfoFromForm(e) {
     e.preventDefault();
     var formData = new FormData(form[0]);
     var title = formData.get('toDoTitle')
-    var description = formData.get('toDoDescription');
+    // var description = formData.get('toDoDescription');
+    if (formData.get('toDoDescription') !== "") {
+        var description = formData.get('toDoDescription');
+    } else {
+        var description = "";
+    }
     var date = formData.get('toDoDate');
     createToDo(title, description, date, "no");
     form[0].reset();

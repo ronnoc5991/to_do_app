@@ -51,7 +51,7 @@ const populateRightSideContent = (project="none") => {
         itemDiv.dataset.index = `${i}`;
 
         const itemTitle = document.createElement('div');
-        itemTitle.className = "itemTitle itemTitleNoInfo"
+        itemTitle.className = "itemTitle"
         itemTitle.innerHTML = `<h4>${arrayOfToDos[i].title}<h4>`;
         itemDiv.appendChild(itemTitle);
 
@@ -60,24 +60,32 @@ const populateRightSideContent = (project="none") => {
             itemTitle.className += " lineThrough";
         }
 
-        const moreInfoDiv = document.createElement('div');
-        moreInfoDiv.className = "moreInfo";
-        moreInfoDiv.innerHTML = '<i class="fas fa-info-circle"></i>';
-        moreInfoDiv.dataset.index = `${i}`;
-        itemDiv.appendChild(moreInfoDiv);
-        itemTitle.classList.toggle('itemTitleNoInfo');
-        const collapsible = document.createElement('div');
-        collapsible.className = "collapsible";
-
         if (arrayOfToDos[i].dueDate != "") {
             var difference = formatDistance(new Date(), new Date(arrayOfToDos[i].dueDate));
-            collapsible.innerHTML = `<h4>Due in ${difference}</h4><br><h4>${arrayOfToDos[i].description}<h4>`;
+            const timeLeftDiv = document.createElement('div');
+            timeLeftDiv.className = 'itemTimeLeft';
+            timeLeftDiv.innerHTML = `<h4>${difference}</h4>`;
+            itemDiv.appendChild(timeLeftDiv);
         } else {
-            collapsible.innerHTML = `<h4>${arrayOfToDos[i].description}<h4>`;
+            
         }
 
-        collapsible.dataset.index = `${i}`;
-        itemDiv.appendChild(collapsible);
+        if (arrayOfToDos[i].description == ""){
+            console.log("There is no description yo");
+            //if no description, do nothing
+        } else {
+            const moreInfoDiv = document.createElement('div');
+            moreInfoDiv.className = "moreInfo";
+            moreInfoDiv.innerHTML = '<i class="fas fa-info-circle"></i>';
+            moreInfoDiv.dataset.index = `${i}`;
+            itemDiv.appendChild(moreInfoDiv);
+            const collapsible = document.createElement('div');
+            collapsible.className = "collapsible";
+            collapsible.dataset.index = `${i}`;
+            collapsible.innerHTML = `<h4>${arrayOfToDos[i].description}</h4>`
+            itemDiv.appendChild(collapsible);
+        }
+
 
         const deleteItemDiv = document.createElement('div');
         deleteItemDiv.className = "deleteItemDiv";
