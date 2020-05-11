@@ -74,7 +74,8 @@ function deleteProject(index) {
     populateNavBar(projectsLibrary); //update the Projects List Display
     projects = document.querySelectorAll('.project');
     if (projects.length > 0) { //set the first Project to active
-        toggleActiveProject(index-1);
+        toggleActiveProject(index-1); //this should be thought out
+        //if active project is deleted... the adjacent project should be made active
     }
     updateRightSideDisplay();
     saveLocalProjects();
@@ -134,7 +135,6 @@ function updateRightSideDisplay() {
     var projects = document.querySelectorAll('.project');
 
     if (projects.length == 0) {
-        const timeDisplay = document.getElementById("projectTimeDisplay");
         const theTitle = document.getElementById("projectName");
             theTitle.innerHTML = "<h1>Create a New Project<h1>";
         const descriptionDiv = document.getElementById("projectViewerDescription");
@@ -146,6 +146,8 @@ function updateRightSideDisplay() {
     } else {
         populateRightSideContent(projectsLibrary[activeProject]);
     }
+    // const timeDisplay = document.getElementById("projectTimeDisplay");
+    // timeDisplay.classList.toggle('wobbly');
 }
 
 function toggleActiveProject(index) {  //successfully toggles active Project based on click event
@@ -157,6 +159,7 @@ function toggleActiveProject(index) {  //successfully toggles active Project bas
     }
     currentProjects[index].dataset.active = "yes";
     currentProjects[index].className += " active";
+    currentProjects[index].childNodes[1].classList.toggle('spin');
 
     updateRightSideDisplay();
     }
@@ -174,6 +177,8 @@ function getActiveProject(){ //returns index of Active Project in Projects Libra
 }
 
 function toggleFormDisplay(){
+    const toggleProjectForm = document.getElementById('toggleProjectForm');
+    toggleProjectForm.classList.toggle('hidden');
     const formSpace = document.getElementById('formSpace');
     if (formSpace.style.zIndex != 1) {
         formSpace.style.zIndex = 1;

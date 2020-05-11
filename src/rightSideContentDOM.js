@@ -3,6 +3,7 @@ import { formatDistance, differenceInDays } from 'date-fns'
 const populateRightSideContent = (project="none") => {
 // ----------------Change Project Information Display-----------------------------------
     const timeDisplay = document.getElementById("projectTimeDisplay");
+    timeDisplay.style.color = "black";
 
     const theTitle = document.getElementById("projectName");
         theTitle.innerHTML = `<h1>${project.title}<h1>`;
@@ -26,6 +27,7 @@ const populateRightSideContent = (project="none") => {
             timeDisplay.style.color = 'var(--hourglass-green)'
         }
     }
+    timeDisplay.classList.toggle('spin');
 
     if (project.description === ""){ //if no description
         //no description

@@ -75,10 +75,6 @@
         display: flex;
     }
 
-    #toDoFormSpace {
-        z-index: -1;
-        position: absolute;
-    }
 
     /* ------------------------------------------------------------------------------------------ */
 
@@ -119,6 +115,11 @@
     #toggleProjectForm {
         grid-row-start: 4;
         grid-row-end: 5;
+        border: 1px solid black;
+        border-radius: 25px;
+        cursor: pointer;
+        height: 40px;
+        width: 150px;
     }
 
 /* ------------------------------------------- Project Form ------------------------------------------- */
@@ -145,21 +146,15 @@
 
     #formTimeDisplay {
         order: 1;
-        flex-basis: 5%;
         margin: auto;
     }
 
     #projectTitleForm{
-        flex-basis: 80%;
+        flex-basis: 65%;
         order: 2;
         font-size: 27px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
-    }
-
-    #submitProjectButton {
-        flex-basis: 5%;
-        order: 3;
     }
 
     #projectDueDateForm{
@@ -195,6 +190,32 @@
         outline: none;
     }
 
+    #submitProjectButton {
+        flex-basis: 20%;
+        order: 3;
+        height: 50px;
+        width: 50px;
+        position: relative;
+        transition: color 500ms;
+    }
+
+    #submitProjectButton:hover {
+        color: blue;
+    }
+
+    #projectForm input[type=submit] {
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    #submitProjectIcon {
+        position: absolute;
+        z-index: -1;
+    }
+
 /* --------------------------------------------------------------------------------------------- */
 
 /* ------------------------------------To Do Form ---------------------------------------------- */
@@ -209,13 +230,21 @@
     #itemForm {
         width: 70%;
         margin: auto;
-        /* display: flex; */
         display: grid;
-        grid-template-columns: 7fr 7fr 6fr 1fr;
+        grid-template-columns: 8fr 8fr 6fr 2fr;
+        align-content: center;
+        border: 1px solid black;
+        border-radius: 25px;
+        height: 50px;
+    }
+
+    #itemForm input {
+        margin: auto;
+        justify-content: center;
+        text-align: center;
     }
     
     #toDoTitle {
-        /* flex-basis: 35%; */
         grid-column-start: 1;
         grid-column-end: 2;
         font-size: 13px;
@@ -224,21 +253,23 @@
         font-style: italic;
         order: 1;
         margin-left: 5px;
+        display: flex;
+        cursor: text;
     }
 
     #toDoDescription {
         grid-column-start: 2;
         grid-column-end: 3;
-        /* flex-basis: 30%; */
         font-size: 13px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: lighter;
         font-style: italic;
         order: 2;
+        display: flex;
+        cursor: text;
     }
 
     #toDoDate {
-        /* flex-basis: 30%; */
         grid-column-start: 3;
         grid-column-end: 4;
         font-size: 13px;
@@ -246,14 +277,20 @@
         font-weight: lighter;
         font-style: italic;
         order: 3;
+        display: flex;
+        cursor: text;
     }
 
     #submit {
-        /* flex-basis: 5%; */
         grid-column-start: 4;
         grid-column-end: 5;
         order: 4;
         justify-self: center;
+        border: 1px solid black;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
     }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -280,7 +317,7 @@
         pointer-events: none;
         order: 1;
         margin: auto;
-        
+        transition: transform 1000ms;
     }
 
     .projectName {
@@ -321,11 +358,6 @@
     .projectViewer {
         flex-basis: 90%;
         height: 80vh;
-        /* margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: flex-start; */
-        /* overflow: hidden; */
         margin: auto;
         display: grid;
         grid-template-rows: 2fr 2fr 1fr 7fr;
@@ -339,25 +371,32 @@
         align-items: center;
     }
 
-    #projectTimeDisplay{
+    .currentProjectTimeDisplay {
         order: 1;
-        flex-basis: 5%;
         margin: auto;
-        animation: rotateHourglass cubic-bezier(0, 0, 0.38, 1.35) forwards;
+        transform: rotate(0deg);
+        transition: transform 1000ms, color 500ms;
+    }
+
+    .wobbly {
+        animation: wobble 0.5s forwards;
+    }
+
+    .spin {
+        transform: rotate(720deg);
     }
 
     #projectTimeDisplay:hover {
-        /* animation: rotateHourglass 3s forwards; */
+        transform: rotate(720deg);
+    }
+
+    .hidden {
+        display: none;
     }
 
     #projectName {
-        flex-basis: 80%;
+        flex-basis: 85%;
         order: 2;
-    }
-
-    #toggleToDoForm {
-        flex-basis: 5%;
-        order: 3;
     }
 
     #injectProjectItemsHere {
@@ -373,9 +412,6 @@
     }
 
     #projectViewerDescription{
-        /* flex-basis: 70%; */
-        /* margin: 5px auto 30px auto; */
-        /* height: 15%; */
         font-style: italic;
         grid-row-start: 2;
         grid-row-end: 3;
@@ -384,8 +420,6 @@
     }
 
     #projectViewerItems{
-        /* flex-basis: 87%; */
-        /* margin: 15px auto; */
         display: flex;
         align-content: flex-start;
         flex-wrap: wrap;
@@ -508,6 +542,20 @@
         100% { transform: rotate(360deg); }
     }
 
+    @keyframes wobble {
+        0% { transform: rotate(0deg); }
+        10% { transform: rotate(-18deg); }
+        20% { transform: rotate(0deg); }
+        30% { transform: rotate(18deg); }
+        40% { transform: rotate(0deg); }
+        50% { transform: rotate(-18deg); }
+        60% { transform: rotate(0deg); }
+        70% { transform: rotate(18deg); }
+        80% { transform: rotate(0deg); }
+        90% { transform: rotate(-18deg); }
+        100% { transform: rotate(0deg); }
+    }
+
     @keyframes slideOut {
         0%{
             opacity: 1;
@@ -547,13 +595,13 @@ input {
             </div>
 
             <div id="listsHeader">
-                <h2>Lists</h2>
+                <h2>Projects</h2>
             </div>
 
             <div id="projectsNavBar">
             </div>
 
-            <button id="toggleProjectForm">New Project</button>
+            <button id="toggleProjectForm">Create Project</button>
 
         </div>
     
@@ -573,17 +621,18 @@ input {
                             </label>
 
                             <label id="submitProjectButton">
-                                <input type="submit" value="+" name="submitProject" id="submitProject"/>
+                                <input type="submit" value='' name="submitProject" id="submitProject"/>
+                                <div id='submitProjectIcon'>
+                                    <i class="far fa-plus-square fa-3x"></i>
+                                </div>
                             </label>
 
-
                         </div>
-                        <label id="projectDescriptionForm">
-                            <!-- <input type="text" name="projectDescription" placeholder="Project Details" autocomplete="off" /> -->
-                            <textarea name="projectDescription" id="projectDescription" cols="30" rows="10" placeholder="Project Description"></textarea>
-                        </label>
                         <label id="projectDueDateForm">
                             <input type="date" name="projectDueDate" placeholder="When is it due?" autocomplete="off" />
+                        </label>
+                        <label id="projectDescriptionForm">
+                            <textarea name="projectDescription" id="projectDescription" cols="30" rows="10" placeholder="Project Description"></textarea>
                         </label>
                     </form>
                 </div>
@@ -593,19 +642,19 @@ input {
             <div class="projectViewer">
 
                 <div id="projectHeader">
-                    <div id="projectTimeDisplay" ></div>
+                    <div id="projectTimeDisplay" class="currentProjectTimeDisplay" ></div>
                     <div id="projectName" class="projectName"></div>
-                    <button id="toggleToDoForm">+</button>
                 </div>
+                
                 <div id="projectViewerDescription"></div>
 
                 <div class="wrapper" id="formWrapper">
                     <form class="form" id="itemForm">
                         <label id="toDoTitle">
-                                <input type="text" name="toDoTitle" placeholder="What?" autocomplete="off" required>
+                                <input type="text" name="toDoTitle" placeholder="What do you have to do?" autocomplete="off" required>
                         </label>
                         <label id="toDoDescription">
-                                <input type="text" name="toDoDescription" placeholder="Description" autocomplete="off">
+                                <input type="text" name="toDoDescription" placeholder="Additional Information" autocomplete="off">
                         </label>
                         <label id="toDoDate">
                                 <input type="date" name="toDoDate" placeholder="When?" autocomplete="off">
