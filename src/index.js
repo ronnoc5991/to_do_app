@@ -14,6 +14,10 @@ projectForm.onsubmit = function(e) {pullProjectInfoFromForm(e)};
 const toDoForm = document.getElementById('itemForm');
 toDoForm.onsubmit = function(e) {pullToDoInfoFromForm(e)};
 
+const toggleProjectForm = document.getElementById('toggleProjectForm');
+toggleProjectForm.addEventListener("click", toggleFormDisplay);
+
+
 projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Projects Display List
     if (event.target.className === "project"){
         toggleActiveProject(event.target.dataset.index);
@@ -70,7 +74,7 @@ function deleteProject(index) {
     populateNavBar(projectsLibrary); //update the Projects List Display
     projects = document.querySelectorAll('.project');
     if (projects.length > 0) { //set the first Project to active
-        toggleActiveProject(0);
+        toggleActiveProject(index-1);
     }
     updateRightSideDisplay();
     saveLocalProjects();
@@ -121,6 +125,7 @@ function pullProjectInfoFromForm(e) {
     }
     createProject(projectTitle, projectDescription, projectDate);
     form[0].reset();
+    toggleFormDisplay();
 }
 
 function updateRightSideDisplay() {
@@ -168,6 +173,15 @@ function getActiveProject(){ //returns index of Active Project in Projects Libra
     return activeProject;
 }
 
+function toggleFormDisplay(){
+    const formSpace = document.getElementById('formSpace');
+    if (formSpace.style.zIndex != 1) {
+        formSpace.style.zIndex = 1;
+    } else {
+        formSpace.style.zIndex = -1;
+    }
+}
+
 function startUp () {
     getLocalProjects();
     saveLocalProjects();
@@ -179,7 +193,6 @@ function startUp () {
     updateRightSideDisplay();
 }
 
-
 function saveLocalProjects(){
     localStorage.setItem('projectsLibrary', JSON.stringify(projectsLibrary)); //copies projectsLibrary to localStorage
 }
@@ -190,9 +203,6 @@ function getLocalProjects() {
     }else if (localStorage.getItem('projectsLibrary').length == 0) {
         console.log("Hello");
     } else {
-        //set library equal to the localStorage .. this is sloppy.
-        //instead... use the local storage to create new projects and items within those projects
-        // projectsLibrary = JSON.parse(localStorage.getItem('projectsLibrary'));
 
         var savedProjects = JSON.parse(localStorage.getItem('projectsLibrary')); //this is an array... loop through each project
         var numberOfProjects = savedProjects.length;
