@@ -17,6 +17,18 @@ const populateNavBar = (projectsLibrary) => {
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
 
+        // const listLength = projectsLibrary[i].toDos.length
+        // var l = 0;
+        // for (l=0; l<listLength; ++l) {
+        //     var doneCount = 0
+        //     if (projectsLibrary[i].toDos[l].done == "yes"){
+        //         ++doneCount;
+        //     }
+        // }
+        // const toDoCount = listLength - doneCount;
+        //     console.log(toDoCount);
+
+
             if (projectsLibrary[i].date != undefined && projectsLibrary[i].date != "") {
                 var difference = differenceInDays(new Date(projectsLibrary[i].date), new Date());
                 if (difference < 1) {
@@ -36,7 +48,7 @@ const populateNavBar = (projectsLibrary) => {
 
         const projectTitle = document.createElement('div');
             projectTitle.className = "projectName";
-            projectTitle.innerHTML = `<h3>${projectsLibrary[i].title}<h3>`;
+            projectTitle.innerHTML = `<h5>${projectsLibrary[i].title}<h5>`;
         const deleteProjectButton = document.createElement('div');
             deleteProjectButton.className = "deleteProjectButton";
             deleteProjectButton.dataset.index = `${i}`;

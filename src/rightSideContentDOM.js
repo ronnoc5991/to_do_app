@@ -13,14 +13,14 @@ const populateRightSideContent = (project="none") => {
     if (project.description === ""){ //if no description
         //no description
     } else {
-        descriptionDiv.innerHTML += `<br><h4>${project.description}<h4><br>`;
+        descriptionDiv.innerHTML += `<h3>${project.description}<h3><br>`;
     }
 
     if (project.date ==="") { //if no date
         timeDisplay.innerHTML = '<i class="far fa-hourglass fa-3x"></i>'
         timeDisplay.style.color = 'var(--hourglass-blue)';
     } else {
-        descriptionDiv.innerHTML += `<br><h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br>`;
+        descriptionDiv.innerHTML += `<h3>Due in ${formatDistance(new Date(), new Date(project.date))}</h3><br>`;
         var daysUntilDue = differenceInDays(new Date(project.date), new Date());
         if (daysUntilDue < 1) {
             timeDisplay.innerHTML = '<i class="fas fa-hourglass-end fa-3x"></i>';
@@ -56,6 +56,11 @@ const populateRightSideContent = (project="none") => {
         checkBoxDiv.className = 'checkBox';
         itemDiv.appendChild(checkBoxDiv);
 
+        const checkMark = document.createElement('i');
+        checkMark.className = 'fas fa-check';
+        checkMark.style.margin = 'auto';
+        checkBoxDiv.appendChild(checkMark);
+
         const itemTitle = document.createElement('div');
         itemTitle.className = "itemTitle"
         itemTitle.innerHTML = `<h4>${arrayOfToDos[i].title}<h4>`;
@@ -64,6 +69,7 @@ const populateRightSideContent = (project="none") => {
         if(arrayOfToDos[i].done == "yes") {
             itemDiv.className += " done";
             itemTitle.className += " lineThrough";
+            checkBoxDiv.classList += ' fill';
         }
 
         const collapsible = document.createElement('div');
@@ -71,7 +77,6 @@ const populateRightSideContent = (project="none") => {
         collapsible.dataset.index = `${i}`;
         
         if (arrayOfToDos[i].description == "" && arrayOfToDos[i].dueDate == ""){
-            console.log("There is no description yo");
             //if no description, do nothing
         } else {
             const moreInfoDiv = document.createElement('div');
@@ -82,12 +87,12 @@ const populateRightSideContent = (project="none") => {
         }
 
         if (arrayOfToDos[i].description != "") {
-            collapsible.innerHTML += `<h4>${arrayOfToDos[i].description}</h4>`
+            collapsible.innerHTML += `<h3>${arrayOfToDos[i].description}</h3>`
         }
 
         if (arrayOfToDos[i].dueDate != "") {
         var difference = formatDistance(new Date(), new Date(arrayOfToDos[i].dueDate));
-        collapsible.innerHTML += `<br><h4>${difference}</h4>`
+        collapsible.innerHTML += `<br><h3>${difference}</h3>`
         }
 
         // itemDiv.appendChild(collapsible);

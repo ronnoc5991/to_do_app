@@ -6,7 +6,7 @@ import { formatDistance, endOfDay } from 'date-fns'
 
 //--------------Definitions and Event Listeners------------------------------------------------------------------
 const projectsNavBar = document.getElementById("projectsNavBar");
-const projectItems = document.getElementById("projectViewerItems");
+const projectItems = document.getElementById("injectProjectItemsHere");
 
 const projectForm = document.getElementById('projectForm')
 projectForm.onsubmit = function(e) {pullProjectInfoFromForm(e)};
@@ -45,14 +45,17 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
                 collapsibles[i].classList.toggle('extended');
             }
         }
-    } else if (event.target.classList[0] === "itemTitle") { //toggleDoneStatus of Item
+    } else if (event.target.classList[0] === "itemTitle" || event.target.classList[0] === "checkBox") { //toggleDoneStatus of Item
         var activeProject = getActiveProject();
         projectsLibrary[activeProject].toggleDoneStatus(parentItem.dataset.index);
         parentItem.classList.toggle("done");
-        event.target.classList.toggle("lineThrough");
-        //also toggle the llinthrough property for the next sibling?
+        // event.target.classList.toggle("lineThrough");
+
+        const currentItemIndex = parentItem.dataset.index
+        parentItem.firstChild.classList.toggle('fill');
+        parentItem.childNodes[1].classList.toggle('lineThrough');
         saveLocalProjects();
-    } // maybe create a case for if the time left div is clicked that targets the previous sibling element for line through property
+    }
 })
 
 const projectsLibrary = [];
