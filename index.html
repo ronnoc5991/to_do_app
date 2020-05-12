@@ -13,7 +13,7 @@
         --hourglass-green: #0CC400;
         --hourglass-orange: #FFA200;
         --hourglass-red: #FF0000;
-        --hourglass-blue: blue;
+        --hourglass-blue: #0079C1;;
         --rightside-background: #F8F8F8;
         --white: #FFFFFF;
     }
@@ -34,12 +34,20 @@
         margin: 5px;
         font-size: 13px;
         pointer-events: none;
+        font-weight: bold;
     }
 
     h4 {
         margin: 5px;
         font-size: 16;
-        font-weight: lighter;
+        /* font-weight: lighter; */
+        pointer-events: none;
+    }
+
+    h5 {
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
         pointer-events: none;
     }
 
@@ -214,7 +222,7 @@
     }
 
     #submitProjectButton:hover {
-        color: blue;
+        color: var(--hourglass-blue);
     }
 
     #projectForm input[type=submit] {
@@ -453,12 +461,13 @@
 
     .item {
         flex-basis: 100%;
-        margin: 10px auto;
+        margin: auto;
         transition: all 0.5s ease;
         display: grid;
         grid-template-columns: 1fr 14fr 1fr 1fr;
         border-bottom: 1px solid black;
-        padding-bottom: 5px;
+        padding-bottom: 8px;
+        padding-top: 8px;
         align-items: center;
     }
 
@@ -470,6 +479,12 @@
         border: 1px solid black;
         border-radius: 5px;
         margin: auto;
+        display: flex;
+        color: white;
+    }
+
+    .fill {
+        background-color: var(--hourglass-blue);
     }
 
     .collapsible {
@@ -500,10 +515,11 @@
     .itemTitle {
         grid-column-start: 2;
         grid-column-end: 3;
+        font-weight: bold;
     }
 
     .done {
-        background-color: #EFEFEF;
+        background-color: var(--rightside-background);
     }
 
     .lineThrough {
@@ -521,7 +537,7 @@
     }
 
     .moreInfo:hover {
-        color: blue;
+        color: var(--hourglass-blue);
     }
 
     .deleteItemDiv {
