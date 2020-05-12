@@ -74,7 +74,8 @@ function deleteProject(index) {
     populateNavBar(projectsLibrary); //update the Projects List Display
     projects = document.querySelectorAll('.project');
     if (projects.length > 0) { //set the first Project to active
-        toggleActiveProject(index-1); //this should be thought out
+        // toggleActiveProject(index-1); //this should be thought out
+        toggleActiveProject(0);
         //if active project is deleted... the adjacent project should be made active
     }
     updateRightSideDisplay();

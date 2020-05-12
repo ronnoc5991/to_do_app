@@ -10,11 +10,17 @@ const populateRightSideContent = (project="none") => {
     const descriptionDiv = document.getElementById("projectViewerDescription");
     descriptionDiv.innerHTML = "";
 
+    if (project.description === ""){ //if no description
+        //no description
+    } else {
+        descriptionDiv.innerHTML += `<br><h4>${project.description}<h4><br>`;
+    }
+
     if (project.date ==="") { //if no date
         timeDisplay.innerHTML = '<i class="far fa-hourglass fa-3x"></i>'
         timeDisplay.style.color = 'var(--hourglass-blue)';
     } else {
-        descriptionDiv.innerHTML = `<h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br>`;
+        descriptionDiv.innerHTML += `<br><h4>Due in ${formatDistance(new Date(), new Date(project.date))}</h4><br>`;
         var daysUntilDue = differenceInDays(new Date(project.date), new Date());
         if (daysUntilDue < 1) {
             timeDisplay.innerHTML = '<i class="fas fa-hourglass-end fa-3x"></i>';
@@ -28,12 +34,6 @@ const populateRightSideContent = (project="none") => {
         }
     }
     timeDisplay.classList.toggle('spin');
-
-    if (project.description === ""){ //if no description
-        //no description
-    } else {
-        descriptionDiv.innerHTML += `<h4>${project.description}<h4>`;
-    }
 
 // -------------------------------------------------------------------------------------
 
@@ -62,17 +62,13 @@ const populateRightSideContent = (project="none") => {
             itemTitle.className += " lineThrough";
         }
 
-        if (arrayOfToDos[i].dueDate != "") {
-            var difference = formatDistance(new Date(), new Date(arrayOfToDos[i].dueDate));
-            const timeLeftDiv = document.createElement('div');
-            timeLeftDiv.className = 'itemTimeLeft';
-            timeLeftDiv.innerHTML = `<h4>${difference}</h4>`;
-            itemDiv.appendChild(timeLeftDiv);
-        } else {
-            
-        }
+        const collapsible = document.createElement('div');
+        collapsible.className = "collapsible";
+        collapsible.dataset.index = `${i}`;
+        itemDiv.appendChild(collapsible);
 
-        if (arrayOfToDos[i].description == ""){
+        
+        if (arrayOfToDos[i].description == "" && arrayOfToDos[i].dueDate == ""){
             console.log("There is no description yo");
             //if no description, do nothing
         } else {
@@ -81,12 +77,18 @@ const populateRightSideContent = (project="none") => {
             moreInfoDiv.innerHTML = '<i class="fas fa-info-circle"></i>';
             moreInfoDiv.dataset.index = `${i}`;
             itemDiv.appendChild(moreInfoDiv);
-            const collapsible = document.createElement('div');
-            collapsible.className = "collapsible";
-            collapsible.dataset.index = `${i}`;
-            collapsible.innerHTML = `<h4>${arrayOfToDos[i].description}</h4>`
-            itemDiv.appendChild(collapsible);
         }
+
+        if (arrayOfToDos[i].description != "") {
+            collapsible.innerHTML += `<h4>${arrayOfToDos[i].description}</h4>`
+        }
+
+        if (arrayOfToDos[i].dueDate != "") {
+        var difference = formatDistance(new Date(), new Date(arrayOfToDos[i].dueDate));
+        collapsible.innerHTML += `<br><h4>${difference}</h4>`
+        }
+
+        // itemDiv.appendChild(collapsible);
 
 
         const deleteItemDiv = document.createElement('div');
