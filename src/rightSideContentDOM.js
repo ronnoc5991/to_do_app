@@ -52,6 +52,10 @@ const populateRightSideContent = (project="none") => {
         itemDiv.className = "item";
         itemDiv.dataset.index = `${i}`;
 
+        const checkBoxDiv = document.createElement('div');
+        checkBoxDiv.className = 'checkBox';
+        itemDiv.appendChild(checkBoxDiv);
+
         const itemTitle = document.createElement('div');
         itemTitle.className = "itemTitle"
         itemTitle.innerHTML = `<h4>${arrayOfToDos[i].title}<h4>`;
@@ -65,8 +69,6 @@ const populateRightSideContent = (project="none") => {
         const collapsible = document.createElement('div');
         collapsible.className = "collapsible";
         collapsible.dataset.index = `${i}`;
-        itemDiv.appendChild(collapsible);
-
         
         if (arrayOfToDos[i].description == "" && arrayOfToDos[i].dueDate == ""){
             console.log("There is no description yo");
@@ -96,6 +98,8 @@ const populateRightSideContent = (project="none") => {
         deleteItemDiv.dataset.index = `${i}`;
         deleteItemDiv.innerHTML = '<i class="fas fa-trash-alt"></i>';
         itemDiv.appendChild(deleteItemDiv);
+
+        itemDiv.appendChild(collapsible);
 
         itemDisplay.appendChild(itemDiv);
     }
