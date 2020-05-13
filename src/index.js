@@ -181,8 +181,8 @@ function getActiveProject(){ //returns index of Active Project in Projects Libra
 }
 
 function toggleFormDisplay(){
-    const toggleProjectForm = document.getElementById('toggleProjectForm');
-    toggleProjectForm.classList.toggle('hidden');
+    // const toggleProjectForm = document.getElementById('toggleProjectForm');
+    // toggleProjectForm.classList.toggle('hidden');
     const formSpace = document.getElementById('formSpace');
     if (formSpace.style.zIndex != 1) {
         formSpace.style.zIndex = 1;

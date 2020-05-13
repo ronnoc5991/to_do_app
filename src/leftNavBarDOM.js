@@ -48,7 +48,7 @@ const populateNavBar = (projectsLibrary) => {
 
         const projectTitle = document.createElement('div');
             projectTitle.className = "projectName";
-            projectTitle.innerHTML = `<h5>${projectsLibrary[i].title}<h5>`;
+            projectTitle.innerHTML = `<h6>${projectsLibrary[i].title}<h6>`;
         const deleteProjectButton = document.createElement('div');
             deleteProjectButton.className = "deleteProjectButton";
             deleteProjectButton.dataset.index = `${i}`;
