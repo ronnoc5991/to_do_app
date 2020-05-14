@@ -17,7 +17,7 @@ const populateNavBar = (projectsLibrary) => {
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
 
-        // const listLength = projectsLibrary[i].toDos.length
+
         // var l = 0;
         // for (l=0; l<listLength; ++l) {
         //     var doneCount = 0
@@ -48,7 +48,17 @@ const populateNavBar = (projectsLibrary) => {
 
         const projectTitle = document.createElement('div');
             projectTitle.className = "projectName";
-            projectTitle.innerHTML = `<h6>${projectsLibrary[i].title}<h6>`;
+            // projectTitle.innerHTML = `<h6>${projectsLibrary[i].title}<h6>`;
+
+        const listLength = projectsLibrary[i].toDos.length
+            console.log(listLength);
+            if (listLength > 0) {
+                projectTitle.innerHTML += `<h6>${projectsLibrary[i].title}<h5>${listLength}</h5></h6>`;
+            } else {
+                projectTitle.innerHTML = `<h6>${projectsLibrary[i].title}<h6>`;
+            }
+
+
         const deleteProjectButton = document.createElement('div');
             deleteProjectButton.className = "deleteProjectButton";
             deleteProjectButton.dataset.index = `${i}`;

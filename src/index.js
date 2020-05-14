@@ -49,7 +49,7 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
         var activeProject = getActiveProject();
         projectsLibrary[activeProject].toggleDoneStatus(parentItem.dataset.index);
         parentItem.classList.toggle("done");
-        // event.target.classList.toggle("lineThrough");
+        // include here an update of leftNavBar that calculates new number of done projects
 
         const currentItemIndex = parentItem.dataset.index
         parentItem.firstChild.classList.toggle('fill');
@@ -150,8 +150,16 @@ function updateRightSideDisplay() {
     } else {
         populateRightSideContent(projectsLibrary[activeProject]);
     }
-    // const timeDisplay = document.getElementById("projectTimeDisplay");
-    // timeDisplay.classList.toggle('wobbly');
+    updateLeftNavBar(); //potential spot of problems
+}
+
+function updateLeftNavBar () {
+    var active = getActiveProject();
+    populateNavBar(projectsLibrary);
+    const currentProjects = document.querySelectorAll('.project');
+    currentProjects[active].dataset.active = "yes";
+    //make project active
+    
 }
 
 function toggleActiveProject(index) {  //successfully toggles active Project based on click event
@@ -181,8 +189,6 @@ function getActiveProject(){ //returns index of Active Project in Projects Libra
 }
 
 function toggleFormDisplay(){
-    // const toggleProjectForm = document.getElementById('toggleProjectForm');
-    // toggleProjectForm.classList.toggle('hidden');
     const formSpace = document.getElementById('formSpace');
     if (formSpace.style.zIndex != 1) {
         formSpace.style.zIndex = 1;
@@ -234,5 +240,3 @@ function getLocalProjects() {
 
 //----------------------------------------------------------------------------------------------
 startUp();
-
-//should the new project and new to do item forms be hidden until called upon?  could include cool roll out animation
