@@ -13,22 +13,27 @@
         --hourglass-green: #0CC400;
         --hourglass-orange: #FFA200;
         --hourglass-red: #FF0000;
-        --hourglass-blue: #0079C1;;
-        --rightside-background: #F8F8F8;
+        --light-blue: #0079C1;
+        --dark-blue: #00457C;
+        --base-gray: #F8F8F8;
         --white: #FFFFFF;
+        --black: #000000;
     }
 
     h1 {
         /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
         font-size: 27px;
-        color: #4D4D4D;
+        /* color: #4D4D4D; */
+        color: var(--black);
         font-weight: bolder;
     }
 
     h2 {
         /* font-family: Arial, Helvetica, sans-serif; */
         font-size: 20px;
-        color: #4D4D4D;
+        /* color: #4D4D4D; */
+        color: var(--black);
+
     }
 
     h3 {
@@ -37,6 +42,7 @@
         pointer-events: none;
         /* font-weight: bold; */
         font-weight: normal;
+        color: var(--black);
     }
 
     h4 {
@@ -44,6 +50,7 @@
         font-size: 16;
         /* font-weight: lighter; */
         pointer-events: none;
+        color: var(--black);
     }
 
     h5 {
@@ -53,6 +60,7 @@
         pointer-events: none;
         font-weight: normal;
         float: left;
+        color: var(--black);
     }
 
     h6 {
@@ -61,6 +69,7 @@
         pointer-events: none;
         font-weight: bold;
         float: left;
+        color: var(--black);
     }
 
     i {
@@ -105,7 +114,7 @@
         grid-column-start: 1;
         grid-column-end: 2;
         height: 100%;
-        background-color: var(--rightside-background);
+        background-color: var(--base-gray);
         display: grid;
         grid-template-rows: 1fr 1fr 8fr 1fr;
         justify-items: center;
@@ -135,7 +144,7 @@
     #toggleProjectForm {
         /* all: unset; */
         border: none;
-        border-top: 1px solid #4D4D4D;
+        border-top: 1px solid var(--black);
         text-align: center;
         background-color: transparent;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -150,7 +159,6 @@
 
     #toggleProjectForm:focus {
         outline: none;
-        /* border: none; */
     }
 
 /* ------------------------------------------- Project Form ------------------------------------------- */
@@ -235,7 +243,7 @@
     }
 
     #submitProjectButton:hover {
-        color: var(--hourglass-blue);
+        color: var(--light-blue);
     }
 
     #projectForm input[type=submit] {
@@ -323,10 +331,7 @@
     }
 
     #addToDoButtonIcon {
-        /* position: absolute; */
         text-align: center;
-        /* width: 100%; */
-        /* height: 100%; */
         z-index: 0;
         margin: auto;
     }
@@ -339,7 +344,6 @@
     .project {
         flex-basis: 80%;
         margin: 5px auto;
-        color: #4D4D4D;
         border-radius: 5%;
         display: flex;
     }
@@ -368,7 +372,7 @@
     .deleteProjectButton {
         text-align: center;
         flex-basis: 10%;
-        color: black;
+        color: var(--black);
         margin: auto;
         order: 3;
     }
@@ -440,7 +444,7 @@
 
     #injectProjectItemsHere {
         width: 100%;
-        max-height: 300px;
+        max-height: 350px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -456,7 +460,7 @@
         grid-row-end: 3;
         width: 70%;
         margin: auto;
-        background-color: var(--rightside-background);
+        background-color: var(--base-gray);
         border-radius: 5px;
     }
 
@@ -498,7 +502,7 @@
     }
 
     .fill {
-        background-color: var(--hourglass-blue);
+        background-color: var(--light-blue);
     }
 
     .collapsible {
@@ -533,7 +537,7 @@
     }
 
     .done {
-        background-color: var(--rightside-background);
+        background-color: var(--base-gray);
     }
 
     .lineThrough {
@@ -552,7 +556,7 @@
     }
 
     .moreInfo:hover {
-        color: var(--hourglass-blue);
+        color: var(--light-blue);
     }
 
     .deleteItemDiv {
@@ -689,7 +693,7 @@ input {
 
                         </div>
                         <label id="projectDueDateForm">
-                            <input type="date" name="projectDueDate" placeholder="When is it due?" autocomplete="off" />
+                            <input type="datetime-local" name="projectDueDate" placeholder="When is it due?" autocomplete="off" />
                         </label>
                         <label id="projectDescriptionForm">
                             <textarea name="projectDescription" id="projectDescription" cols="30" rows="10" placeholder="Project Description"></textarea>

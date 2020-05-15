@@ -1,4 +1,4 @@
-import { formatDistance, differenceInDays } from 'date-fns'
+import { formatDistance, formatRelative, differenceInDays } from 'date-fns'
 
 const populateRightSideContent = (project="none") => {
 // ----------------Change Project Information Display-----------------------------------
@@ -13,14 +13,18 @@ const populateRightSideContent = (project="none") => {
     if (project.description === ""){ //if no description
         //no description
     } else {
-        descriptionDiv.innerHTML += `<h3>${project.description}<h3><br>`;
+        descriptionDiv.innerHTML += `<h3>${project.description}<h3>`;
     }
 
     if (project.date ==="") { //if no date
         timeDisplay.innerHTML = '<i class="far fa-hourglass fa-3x"></i>'
-        timeDisplay.style.color = 'var(--hourglass-blue)';
+        timeDisplay.style.color = 'var(--light-blue)';
     } else {
-        descriptionDiv.innerHTML += `<h3>Due in ${formatDistance(new Date(), new Date(project.date))}</h3><br>`;
+        // console.log(`${formatRelative(new Date(),new Date(project.date))};
+
+        descriptionDiv.innerHTML += `${formatRelative(new Date(project.date),new Date())}`;
+
+        // descriptionDiv.innerHTML += `<h3>Due in ${formatDistance(new Date(), new Date(project.date))}</h3>`;
         var daysUntilDue = differenceInDays(new Date(project.date), new Date());
         if (daysUntilDue < 1) {
             timeDisplay.innerHTML = '<i class="fas fa-hourglass-end fa-3x"></i>';

@@ -11,7 +11,7 @@ const populateNavBar = (projectsLibrary) => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     var date = new Date();
-    currentDateDisplay.innerHTML = `<h1>${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}</h1>`;
+    currentDateDisplay.innerHTML = `<h2>${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}</h2>`;
 
     
 
