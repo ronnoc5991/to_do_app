@@ -7,6 +7,14 @@ const populateNavBar = (projectsLibrary) => {
         projectsNavBar.removeChild(projectsNavBar.firstChild);
     }
 
+    const currentDateDisplay = document.getElementById('appLogo');
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    var date = new Date();
+    currentDateDisplay.innerHTML = `<h1>${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}</h1>`;
+
+    
+
     var i;
 
     for (i = 0; i < projectsLibrary.length; ++i) { //add New Projects
@@ -17,16 +25,6 @@ const populateNavBar = (projectsLibrary) => {
         const timeDisplay = document.createElement('div');
             timeDisplay.className = "projectTimeDisplay";
 
-
-        // var l = 0;
-        // for (l=0; l<listLength; ++l) {
-        //     var doneCount = 0
-        //     if (projectsLibrary[i].toDos[l].done == "yes"){
-        //         ++doneCount;
-        //     }
-        // }
-        // const toDoCount = listLength - doneCount;
-        //     console.log(toDoCount);
 
 
             if (projectsLibrary[i].date != undefined && projectsLibrary[i].date != "") {
@@ -48,16 +46,23 @@ const populateNavBar = (projectsLibrary) => {
 
         const projectTitle = document.createElement('div');
             projectTitle.className = "projectName";
-            // projectTitle.innerHTML = `<h6>${projectsLibrary[i].title}<h6>`;
+
 
         const listLength = projectsLibrary[i].toDos.length
-            console.log(listLength);
-            if (listLength > 0) {
-                projectTitle.innerHTML += `<h6>${projectsLibrary[i].title}<h5>${listLength}</h5></h6>`;
+        var y = 0;
+        var doneCount = 0;
+        for (y=0; y<listLength; ++y) {
+            if (projectsLibrary[i].toDos[y].done === 'yes') {
+                doneCount += 1;
+            }
+        }
+        var leftToDoCount = listLength - doneCount;
+
+            if (leftToDoCount > 0) {
+                projectTitle.innerHTML += `<h6>${projectsLibrary[i].title}<h5>${leftToDoCount}</h5></h6>`;
             } else {
                 projectTitle.innerHTML = `<h6>${projectsLibrary[i].title}<h6>`;
             }
-
 
         const deleteProjectButton = document.createElement('div');
             deleteProjectButton.className = "deleteProjectButton";

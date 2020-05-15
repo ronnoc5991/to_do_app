@@ -49,9 +49,7 @@ projectItems.addEventListener("click", event => { //adds EventListeners to each 
         var activeProject = getActiveProject();
         projectsLibrary[activeProject].toggleDoneStatus(parentItem.dataset.index);
         parentItem.classList.toggle("done");
-        // include here an update of leftNavBar that calculates new number of done projects
-
-        const currentItemIndex = parentItem.dataset.index
+        updateLeftNavBar();
         parentItem.firstChild.classList.toggle('fill');
         parentItem.childNodes[1].classList.toggle('lineThrough');
         saveLocalProjects();
