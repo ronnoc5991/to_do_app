@@ -22,7 +22,7 @@ const populateRightSideContent = (project="none") => {
     } else {
         // console.log(`${formatRelative(new Date(),new Date(project.date))};
 
-        descriptionDiv.innerHTML += `${formatRelative(new Date(project.date),new Date())}`;
+        descriptionDiv.innerHTML += `<h3>${formatRelative(new Date(project.date),new Date())}</h3>`;
 
         // descriptionDiv.innerHTML += `<h3>Due in ${formatDistance(new Date(), new Date(project.date))}</h3>`;
         var daysUntilDue = differenceInDays(new Date(project.date), new Date());
