@@ -42,7 +42,7 @@
         pointer-events: none;
         /* font-weight: bold; */
         font-weight: normal;
-        color: var(--black);
+        /* color: var(--black); */
     }
 
     h4 {
@@ -139,6 +139,8 @@
         display: flex;
         flex-wrap: wrap;
         align-content: flex-start;
+        overflow: hidden;
+        justify-content: flex-end;
     }
 
     #toggleProjectForm {
@@ -155,10 +157,15 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        transition: color 300ms;
     }
 
     #toggleProjectForm:focus {
         outline: none;
+    }
+
+    #toggleProjectForm:hover {
+        color: var(--light-blue);
     }
 
 /* ------------------------------------------- Project Form ------------------------------------------- */
@@ -239,7 +246,7 @@
         height: 50px;
         width: 50px;
         position: relative;
-        transition: color 500ms;
+        transition: color 300ms;
     }
 
     #submitProjectButton:hover {
@@ -342,15 +349,19 @@
 
 
     .project {
-        flex-basis: 80%;
-        margin: 5px auto;
+        flex-basis: 90%;
         border-radius: 5%;
         display: flex;
+        margin-bottom: 5px;
     }
 
     .project:hover {
         background-color: #E6E6E6;
         cursor: pointer;
+    }
+
+    .project:hover .deleteProjectButton {
+        transform: translateX(0px) rotate(0deg);
     }
 
     .projectTimeDisplay {
@@ -359,11 +370,11 @@
         pointer-events: none;
         order: 1;
         margin: auto;
-        transition: transform 1000ms;
+        transition: transform 800ms;
     }
 
     .projectName {
-        flex-basis: 80%;
+        flex-basis: 75%;
         pointer-events: none;
         order: 2;
         clear: both;
@@ -371,10 +382,12 @@
 
     .deleteProjectButton {
         text-align: center;
-        flex-basis: 10%;
+        flex-basis: 15%;
         color: var(--black);
         margin: auto;
         order: 3;
+        transform: translateX(90px) rotate(360deg);
+        transition: transform 1000ms;
     }
 
     .deleteProjectButton:hover {
@@ -524,6 +537,10 @@
         cursor: pointer;
     }
 
+    .item:hover .deleteItemDiv {
+        transform: translateX(0px);
+    }
+
     .fall {
         animation: slideOut 0.5s forwards;
         opacity: 0;
@@ -564,6 +581,8 @@
         margin: auto;
         grid-column-start: 4;
         grid-column-end: 5;
+        transform: translateX(100px);
+        transition: transform 500ms;
     }
 
     .deleteItemDiv:hover {
