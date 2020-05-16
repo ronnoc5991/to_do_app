@@ -103,7 +103,6 @@ function pullToDoInfoFromForm(e) {
     e.preventDefault();
     var formData = new FormData(form[0]);
     var title = formData.get('toDoTitle')
-    // var description = formData.get('toDoDescription');
     if (formData.get('toDoDescription') !== "") {
         var description = formData.get('toDoDescription');
     } else {
@@ -155,9 +154,7 @@ function updateLeftNavBar () {
     var active = getActiveProject();
     populateNavBar(projectsLibrary);
     const currentProjects = document.querySelectorAll('.project');
-    currentProjects[active].dataset.active = "yes";
-    //make project active
-    
+    currentProjects[active].dataset.active = "yes";    
 }
 
 function toggleActiveProject(index) {  //successfully toggles active Project based on click event
@@ -165,11 +162,11 @@ function toggleActiveProject(index) {  //successfully toggles active Project bas
     var i;
     for (i=0; i<currentProjects.length; ++i) {
         currentProjects[i].dataset.active = "no";
-        currentProjects[i].className = "project";
+        // currentProjects[i].className = "project";
     }
     currentProjects[index].dataset.active = "yes";
-    currentProjects[index].className += " active";
-    currentProjects[index].childNodes[1].classList.toggle('spin');
+    // currentProjects[index].classList.toggle("active");
+    // currentProjects[index].childNodes[1].classList.toggle('spin');
 
     updateRightSideDisplay();
     }
