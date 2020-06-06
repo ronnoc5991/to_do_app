@@ -1,7 +1,8 @@
-import project from "./create-project-object.js"
-import populateRightSideContent from "./rightSideContentDOM.js"
-import populateNavBar from "./leftNavBarDOM.js"
-import { formatDistance, endOfDay } from 'date-fns'
+import project from "./create-project-object.js";
+import populateRightSideContent from "./rightSideContentDOM.js";
+import populateNavBar from "./leftNavBarDOM.js";
+import { formatDistance, endOfDay } from 'date-fns';
+import './style.css';
 
 
 //--------------Definitions and Event Listeners------------------------------------------------------------------
@@ -16,6 +17,14 @@ toDoForm.onsubmit = function(e) {pullToDoInfoFromForm(e)};
 
 const toggleProjectForm = document.getElementById('toggleProjectForm');
 toggleProjectForm.addEventListener("click", toggleFormDisplay);
+
+const mouseCursor = document.querySelector(".cursor");
+window.addEventListener('mousemove', cursor);
+
+function cursor(e) {
+    mouseCursor.style.top = e.pageY + 'px';
+    mouseCursor.style.left = e.pageX + 'px';
+}
 
 
 projectsNavBar.addEventListener("click", event =>  { //adds EventListeners to Projects Display List
@@ -162,12 +171,8 @@ function toggleActiveProject(index) {  //successfully toggles active Project bas
     var i;
     for (i=0; i<currentProjects.length; ++i) {
         currentProjects[i].dataset.active = "no";
-        // currentProjects[i].className = "project";
     }
     currentProjects[index].dataset.active = "yes";
-    // currentProjects[index].classList.toggle("active");
-    // currentProjects[index].childNodes[1].classList.toggle('spin');
-
     updateRightSideDisplay();
     }
 
